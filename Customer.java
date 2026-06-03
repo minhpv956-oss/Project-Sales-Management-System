@@ -5,6 +5,7 @@ package entity;
 public class Customer {
    // hêloe
    // hưng đập trai
+   ///hello chó Minh
    
     private String id;
     private String name;
