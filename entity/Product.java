@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Product {
     private String name;
     // mã sản phẩm
-    private String id;
+    private double id;
     // giá sản phẩm
     private double price;
     // số lượng tồn kho
@@ -20,12 +20,12 @@ public class Product {
     // đường dẫn ảnh
     public String imageUrl;
     // ngày tạo sản phẩm
-    public Date createdAt;
+    public String createdAt;
 
     private static ArrayList<Product> products = new ArrayList<>();
 
-    public Product(String name, String id, double price, int stockQuantity, String category, String unit,
-            String imageUrl, Date createdAt) {
+    public Product(String name, double id, double price, int stockQuantity, String category, String unit,
+            String imageUrl, String createdAt) {
         this.name = name;
         this.id = id;
         this.price = price;

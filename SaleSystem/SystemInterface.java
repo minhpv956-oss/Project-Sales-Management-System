@@ -4,19 +4,20 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import entity.Customerlist;
+import entity.Product;
 import entity.Customer;
 public class SystemInterface {
 
     public static void main(String[] args) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
-        Customerlist customerlist = new Customerlist();
+        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+        // Customerlist customerlist = new Customerlist();
 
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
                 try {
                     System.out.println("========================");
                     System.out.println("SALES MANAGEMENT SYSTEM");
-                    System.out.println("Current Time: " + LocalDateTime.now().format(formatter));
+                    // System.out.println("Current Time: " + LocalDateTime.now().format(formatter));
                     System.out.println("========================");
                     System.out.println("1. Manage Products");
                     System.out.println("2. Manage Customers");
@@ -30,14 +31,58 @@ public class SystemInterface {
                     int n = sc.nextInt();
 
                     switch (n) {
-                        case 1:
-                            System.out.println("Manage Products");
+                       
+ case 1:
 
-                            break;
+    while(true){
+
+        System.out.println("===== PRODUCT MENU =====");
+        System.out.println("1. Add Product");
+        System.out.println("2. View All");
+        System.out.println("3. Search");
+        System.out.println("4. Delete");
+        System.out.println("5. Back");
+
+        int choice = Integer.parseInt(sc.nextLine());
+
+        switch(choice){
+
+            Product p = new Product("bread", 10.0, choice, n, "Bakery", "Fresh bread","empty", "empty");
+
+            case 1:
+
+               
+                
+                p.addProduct();
+
+                break;
+
+            case 2:
+                p.viewAll();    
+
+                break;
+case 3:
+                System.out.print("Enter keyword to search: ");
+                String keyword = sc.nextLine();
+                p.searchByNameOrCategory(keyword);
+                break;
+            case 4:
+                
+            case 5:
+                break;
+        }
+
+        if(choice == 5){
+            break;
+        }
+    }
+
+    break;
+                           
                         case 2:
                             System.out.println("Manage Customers");
-                            customerlist.chooseService();
-                            break;
+                            // customerlist.chooseService();
+                            // break;
                         case 3:
                             System.out.println("Manage Sales Transactions");
                             break;
