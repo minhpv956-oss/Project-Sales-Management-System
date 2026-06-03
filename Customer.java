@@ -3,7 +3,7 @@ package entity;
 
 
 public class Customer {// cho oi cho oi
-   
+   // cho hung
     private String id;
     private String name;
     private String address;
