@@ -6,11 +6,15 @@ import java.util.Scanner;
 
 public class Customerlist extends Customer {
     ArrayList<Customer> customers;
-    Scanner sc= new Scanner(System.in);
-
+    Scanner sc= new Scanner(System.in); 
+    public Customerlist() {
+        customers = new ArrayList<>();
+    }
     public Customerlist(String id, String name, String address, String phone) {
         super(id, name, address, phone);
     }
+
+
     
     public  void addCustomer(){
        System.out.println("Enter the number of customers you want to add: ");
@@ -32,10 +36,9 @@ public class Customerlist extends Customer {
     }
 }
     public  void updateCustomer(){  
-     
           System.out.print("Enter customer ID to update: ");
           String newid = sc.nextLine().trim();
-        if(newid.equalsIgnoreCase(id)){
+        if(newid.equalsIgnoreCase(getId())){
             System.out.print("Enter new customer name: ");
             String newname = sc.nextLine();
             System.out.print("Enter new customer address: ");
@@ -45,27 +48,24 @@ public class Customerlist extends Customer {
             setName(newname);
             setAddress(newaddress);
             setPhone(newphone);
-            Customer updatedCustomer = new Customer(newid, newname, newaddress, newphone);
-            customers.add(updatedCustomer);
             } else {
                 System.out.println("Customer with ID " + newid + " not found!");
                 return;
         }
-          System.out.println("Customer with ID " + id + " updated successfully!");
+          System.out.println("Customer with ID " + getId() + " updated successfully!");
     
 }
     public  void removeCustomer(){
         System.out.print("Enter customer ID to remove: ");
-        try (Scanner sc = new Scanner(System.in)) {
             String removeId = sc.nextLine().trim();
-            if(removeId.equalsIgnoreCase(id)){
+            if(removeId.equalsIgnoreCase(getId())){
                 customers.removeIf(customer -> customer.getId().equalsIgnoreCase(removeId));
                 System.out.println("Customer with ID " + removeId + " removed successfully!");
             } else {
                 System.out.println("Customer with ID " + removeId + " not found!");
             }
         }
-    }
+    
     public void viewAllCustomers(){
         if (customers.isEmpty()) {
             System.out.println("No customers found.");
@@ -82,7 +82,7 @@ public class Customerlist extends Customer {
     }
 
     public void chooseService(){
-     
+     Scanner sc= new Scanner(System.in);
             while (true) {
                 try {
                     System.out.println("========================");

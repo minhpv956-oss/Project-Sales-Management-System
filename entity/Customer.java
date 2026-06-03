@@ -6,12 +6,14 @@ public class Customer {
     private String name;
     private String address;
     private String phone;
+
+    public Customer() {
+    }
     
     public Customer(String id,String name,String address,String phone){
-    
-        this.address = address;
         this.id = id;
         this.name = name;
+        this.address = address;
         this.phone = phone;
 
     
