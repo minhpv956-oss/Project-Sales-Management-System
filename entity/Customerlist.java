@@ -19,7 +19,7 @@ public class Customerlist extends Customer {
     public  void addCustomer(){
        System.out.println("Enter the number of customers you want to add: ");
        int n= sc.nextInt();
-         sc.nextLine();
+       sc.nextLine();
          for(int i=0;i<n;i++){
             System.out.println("Enter details for customer " + (i + 1) + ":");
           System.out.print("Enter customer ID: ");
@@ -37,34 +37,36 @@ public class Customerlist extends Customer {
 }
     public  void updateCustomer(){  
           System.out.print("Enter customer ID to update: ");
-          String newid = sc.nextLine().trim();
-        if(newid.equalsIgnoreCase(getId())){
-            System.out.print("Enter new customer name: ");
-            String newname = sc.nextLine();
-            System.out.print("Enter new customer address: ");
-            String newaddress = sc.nextLine();
-            System.out.print("Enter new customer phone: ");
+          String newid = sc.nextLine();
+        for (Customer customer : customers) {
+            if (newid.equalsIgnoreCase(customer.getId())) {
+                System.out.print("Enter new customer name: ");
+                String newname = sc.nextLine();
+                System.out.print("Enter new customer address: ");
+                String newaddress = sc.nextLine();
+                System.out.print("Enter new customer phone: ");
             String newphone = sc.nextLine();
-            setName(newname);
-            setAddress(newaddress);
-            setPhone(newphone);
+            customer.setName(newname);
+            customer.setAddress(newaddress);
+            customer.setPhone(newphone);
             } else {
                 System.out.println("Customer with ID " + newid + " not found!");
                 return;
         }
           System.out.println("Customer with ID " + getId() + " updated successfully!");
     
-}
+}}
     public  void removeCustomer(){
         System.out.print("Enter customer ID to remove: ");
             String removeId = sc.nextLine().trim();
-            if(removeId.equalsIgnoreCase(getId())){
-                customers.removeIf(customer -> customer.getId().equalsIgnoreCase(removeId));
+            for(Customer customer : customers) {
+            if(removeId.equalsIgnoreCase(customer.getId())){
+                customers.removeIf(customers -> customers.getId().equalsIgnoreCase(removeId));
                 System.out.println("Customer with ID " + removeId + " removed successfully!");
             } else {
                 System.out.println("Customer with ID " + removeId + " not found!");
             }
-        }
+        }}
     
     public void viewAllCustomers(){
         if (customers.isEmpty()) {
