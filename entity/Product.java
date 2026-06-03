@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Product {
     private String name;
     // mã sản phẩm
-    private String id;
+    private double id;
     // giá sản phẩm
     private double price;
     // số lượng tồn kho
@@ -24,7 +24,7 @@ public class Product {
 
     private static ArrayList<Product> products = new ArrayList<>();
 
-    public Product(String name, String id, double price, int stockQuantity, String category, String unit,
+    public Product(String name, double id, double price, int stockQuantity, String category, String unit,
             String imageUrl, Date createdAt) {
         this.name = name;
         this.id = id;
@@ -44,11 +44,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getId() {
+    public double getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(double id) {
         this.id = id;
     }
 
@@ -125,10 +125,10 @@ public class Product {
         System.out.println("Product updated successfully!");
     }
 
-    public void removeProduct(String id) {
+    public void removeProduct(double id) {
 
         for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getId().equalsIgnoreCase(id)) {
+            if (products.get(i).getId() == id) {
                 products.remove(i);
                 break;
             }
