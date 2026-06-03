@@ -2,7 +2,7 @@
 package entity;
 
 
-public class Customer {
+public class Customer {// cho oi cho oi
    
     private String id;
     private String name;
