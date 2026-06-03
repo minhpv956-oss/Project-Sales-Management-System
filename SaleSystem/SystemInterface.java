@@ -1,11 +1,8 @@
 package SaleSystem;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 import entity.Customerlist;
 import entity.Product;
-import entity.Customer;
+import java.util.Scanner;
 public class SystemInterface {
 
     public static void main(String[] args) {
@@ -97,8 +94,9 @@ case 3:
                            
                         case 2:
                             System.out.println("Manage Customers");
-                            // customerlist.chooseService();
-                            // break;
+                                Customerlist customerlist = new Customerlist();
+                            customerlist.chooseService();
+                             break;
                         case 3:
                             System.out.println("Manage Sales Transactions");
                             break;
