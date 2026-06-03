@@ -3,7 +3,7 @@ package entity;
 
 
 public class Customer {
-    
+    // con chó hưng
     private String id;
     private String name;
     private String address;
