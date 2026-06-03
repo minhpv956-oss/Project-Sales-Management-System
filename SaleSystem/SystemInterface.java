@@ -44,29 +44,45 @@ public class SystemInterface {
         System.out.println("5. Back");
 
         int choice = Integer.parseInt(sc.nextLine());
+        Product manager = new Product(
+    "",
+    0,
+    0,
+    0,
+    "",
+    "",
+    "",
+    null
+);
 
         switch(choice){
-
-            Product p = new Product("bread", 10.0, choice, n, "Bakery", "Fresh bread","empty", "empty");
 
             case 1:
 
                
-                
+                Product p = new Product("bread", 10.0, 10.0, 10, "Bakery", "Fresh bread","empty", java.sql.Date.valueOf("2024-05-09"));
+
                 p.addProduct();
 
                 break;
 
             case 2:
-                p.viewAll();    
+                
+                
+
+                manager.viewAll();    
 
                 break;
 case 3:
                 System.out.print("Enter keyword to search: ");
                 String keyword = sc.nextLine();
-                p.searchByNameOrCategory(keyword);
+                manager.searchByNameOrCategory(keyword);
                 break;
-            case 4:
+            case 4: 
+                System.out.print("Enter product ID to delete: ");
+                double id = Double.parseDouble(sc.nextLine());
+                manager.removeProduct(id);
+                break;
                 
             case 5:
                 break;
