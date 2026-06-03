@@ -4,6 +4,7 @@ package entity;
 
 public class Customer {
    // hêloe
+   // hưng đập trai
    
     private String id;
     private String name;
