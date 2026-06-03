@@ -74,16 +74,16 @@ public class Customer {
 
                     switch (n) {
                         case 1:
-                            System.out.println("Manage Products");
+                            System.out.println("Add new customer");
                             break;
                         case 2:
-                            System.out.println("Manage Customers");
+                            System.out.println("Update customer information.");
                             break;
                         case 3:
-                            System.out.println("Manage Sales Transactions");
+                            System.out.println("Remove a customer.");
                             break;
                         case 4:
-                            System.out.println("Reports");
+                            System.out.println("View all customers.");
                             break;
                         case 5:
                             System.out.println("Exit Program");
