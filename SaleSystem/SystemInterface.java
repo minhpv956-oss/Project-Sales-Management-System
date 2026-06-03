@@ -7,9 +7,6 @@ import java.util.Scanner;
 import entity.Customer;
 public class SystemInterface {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
 
@@ -34,6 +31,7 @@ public class SystemInterface {
                     switch (n) {
                         case 1:
                             System.out.println("Manage Products");
+
                             break;
                         case 2:
                             System.out.println("Manage Customers");
