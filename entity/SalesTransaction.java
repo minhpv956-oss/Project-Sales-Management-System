@@ -1,7 +1,6 @@
 
 package entity;
 
-
 public class SalesTransaction {
  
      private String transactionId;
@@ -60,8 +59,6 @@ public class SalesTransaction {
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
+
     
-    public void totalBill(){
-        totalAmount = VIPCustomer.totalBill(totalAmount);
-    } 
 }

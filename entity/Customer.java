@@ -49,5 +49,11 @@ public class Customer {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    public void showCustomerInfo(){
+        System.out.println("Customer ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Address: " + address);
+        System.out.println("Phone: " + phone);
+    }
 
 }

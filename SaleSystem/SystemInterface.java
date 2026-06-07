@@ -1,8 +1,9 @@
 package SaleSystem;
 
+import java.util.Scanner;
+
 import entity.Customerlist;
 import entity.Product;
-import java.util.Scanner;
 public class SystemInterface {
 
     public static void main(String[] args) {
