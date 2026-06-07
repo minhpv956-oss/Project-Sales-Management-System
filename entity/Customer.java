@@ -9,7 +9,7 @@ public class Customer {
 
     public Customer() {
     }
-    //tyhrtyiyukigyuik
+
     public Customer(String id,String name,String address,String phone){
         this.id = id;
         this.name = name;

@@ -84,7 +84,6 @@ public class Customerlist extends Customer {
     }
 
     public void chooseService(){
-     Scanner sc= new Scanner(System.in);
             while (true) {
                 try {
                     System.out.println("========================");
