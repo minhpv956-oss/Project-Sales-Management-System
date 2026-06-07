@@ -44,6 +44,7 @@ public class SalesTransaction {
         this.productId = productId;
     }
 
+
     public int getQuantity() {
         return quantity;
     }
@@ -60,5 +61,7 @@ public class SalesTransaction {
         this.totalAmount = totalAmount;
     }
     
-     
+    public void totalBill(){
+        totalAmount = VIPCustomer.totalBill(totalAmount);
+    } 
 }
