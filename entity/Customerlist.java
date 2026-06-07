@@ -23,14 +23,14 @@ public class Customerlist extends Customer {
          for(int i=0;i<n;i++){
             System.out.println("Enter details for customer " + (i + 1) + ":");
           System.out.print("Enter customer ID: ");
-          String id = sc.nextLine();
+          String customerid = sc.nextLine();
           System.out.print("Enter customer name: ");
-          String name = sc.nextLine();
+          String customername = sc.nextLine();
           System.out.print("Enter customer address: ");
-          String address = sc.nextLine();
+          String customeraddress = sc.nextLine();
           System.out.print("Enter customer phone: ");
-          String phone = sc.nextLine();
-          Customer newCustomer = new Customer(id, name, address, phone);
+          String customerphone = sc.nextLine();
+          Customer newCustomer = new Customer(customerid, customername, customeraddress, customerphone);
           customers.add(newCustomer);
           System.out.println("Customer added successfully!");
     }
@@ -61,7 +61,7 @@ public class Customerlist extends Customer {
             String removeId = sc.nextLine().trim();
             for(Customer customer : customers) {
             if(removeId.equalsIgnoreCase(customer.getId())){
-                customers.removeIf(customers -> customers.getId().equalsIgnoreCase(removeId));
+                customers.removeIf(c -> c.getId().equalsIgnoreCase(removeId));
                 System.out.println("Customer with ID " + removeId + " removed successfully!");
             } else {
                 System.out.println("Customer with ID " + removeId + " not found!");

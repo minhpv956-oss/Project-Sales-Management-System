@@ -15,7 +15,6 @@ public class Customer {
         this.name = name;
         this.address = address;
         this.phone = phone;
-
     
     }
 
@@ -51,6 +50,4 @@ public class Customer {
         this.phone = phone;
     }
 
-    
-    
 }
