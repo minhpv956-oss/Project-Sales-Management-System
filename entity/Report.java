@@ -167,7 +167,7 @@ public void highestPurchaseCustomer(ArrayList<SalesTransaction> transactions) {
                 + ". "
                 + customerNames[i]
                 + " | "
-                + purchases[i] + "VND.");
+                + purchases[i] + "VND");
     }
 }
 }
