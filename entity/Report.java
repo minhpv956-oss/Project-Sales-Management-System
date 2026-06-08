@@ -2,7 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.Date;
-
+//hello
 public class Report extends Customer {
 
     private String reportType;
