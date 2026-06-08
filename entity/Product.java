@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class Product {
     private String name;
-    // mã sản phẩm
+    
     private double id;
-    // giá sản phẩm
+    
     private double price;
     // số lượng tồn kho
     private int stockQuantity;

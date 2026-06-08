@@ -6,10 +6,12 @@ import java.util.Scanner;
 import entity.Customerlist;
 import entity.Product;
 import entity.Customer;
+
 public class SystemInterface {
 
     public static void main(String[] args) {
-        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss
+        // dd/MM/yyyy");
         // Customerlist customerlist = new Customerlist();
 
         try (Scanner sc = new Scanner(System.in)) {
@@ -31,70 +33,11 @@ public class SystemInterface {
                     int n = sc.nextInt();
 
                     switch (n) {
-                       
- case 1:
 
-    while(true){
-
-        System.out.println("===== PRODUCT MENU =====");
-        System.out.println("1. Add Product");
-        System.out.println("2. View All");
-        System.out.println("3. Search");
-        System.out.println("4. Delete");
-        System.out.println("5. Back");
-
-        int choice = Integer.parseInt(sc.nextLine());
-        Product manager = new Product(
-    "",
-    0,
-    0,
-    0,
-    "",
-    "",
-    "",
-    null
-);
-
-        switch(choice){
-
-            case 1:
-
-               
-                Product p = new Product("bread", 10.0, 10.0, 10, "Bakery", "Fresh bread","empty", java.sql.Date.valueOf("2024-05-09"));
-
-                p.addProduct();
-
-                break;
-
-            case 2:
-                
-                
-
-                manager.viewAll();    
-
-                break;
-case 3:
-                System.out.print("Enter keyword to search: ");
-                String keyword = sc.nextLine();
-                manager.searchByNameOrCategory(keyword);
-                break;
-            case 4: 
-                System.out.print("Enter product ID to delete: ");
-                double id = Double.parseDouble(sc.nextLine());
-                manager.removeProduct(id);
-                break;
-                
-            case 5:
-                break;
-        }
-
-        if(choice == 5){
-            break;
-        }
-    }
-
-    break;
-                           
+                        case 1:
+                            System.out.println("Manage Products");
+                            // productlist.chooseService();
+                            break;
                         case 2:
                             System.out.println("Manage Customers");
                             // customerlist.chooseService();
