@@ -6,7 +6,6 @@ public class Inventory {
     
     private String productId;
     private int currentStock;
-    
     public Inventory(String productId, int currentStock){
     this.currentStock = currentStock;
     this.productId = productId;
