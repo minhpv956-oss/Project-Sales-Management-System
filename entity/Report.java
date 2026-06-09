@@ -2,13 +2,15 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.Date;
-//hello
-public class Report extends Customer {
+
+public class Report extends SalesTransaction{
 
     private String reportType;
     private Date reportDate;
 
-    public Report(String reportType, Date reportDate) {
+    public Report(String reportType, Date reportDate, String transactionId, String customerId, String productId, int quantity, double totalAmount) {
+        
+        super(transactionId, customerId, productId, quantity, totalAmount);
         this.reportType = reportType;
         this.reportDate = reportDate;
     }
