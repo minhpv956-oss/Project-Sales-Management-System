@@ -8,14 +8,14 @@ public class OderDetail {
     private double price;
     private Scanner sc = new Scanner(System.in);
 
-    public OderDetail() {
-    }
-
-    public OderDetail(Product product, int quantity, ProductList productList) {
+   public OderDetail(ProductList productList) {
+    this.productList = productList; 
+   }
+    public OderDetail(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
         this.price = product.getPrice();
-        this.productList = productList;
+       
     }
 
     public Product getProduct() {
