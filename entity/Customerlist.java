@@ -42,6 +42,7 @@ public class Customerlist extends Customer {
     public  void updateCustomer(){  
           System.out.print("Enter customer ID to update: ");
           String newid = sc.nextLine();
+          int found=0;
         for (Customer customer : customers) {
             if (newid.equalsIgnoreCase(customer.getId())) {
                 System.out.print("Enter new customer name: ");
@@ -53,24 +54,25 @@ public class Customerlist extends Customer {
             customer.setName(newname);
             customer.setAddress(newaddress);
             customer.setPhone(newphone);
-            } else {
-                System.out.println("Customer with ID " + newid + " not found!");
-                return;
-        }
-          System.out.println("Customer with ID " + getId() + " updated successfully!");
-    
-}}
+            found=1;
+            break;
+            }}
+          if(found==1) System.out.println("Customer with ID " + getId() + " updated successfully!");
+         else System.out.println("Customer with ID " + newid + " not found!");   
+  }
     public  void removeCustomer(){
         System.out.print("Enter customer ID to remove: ");
             String removeId = sc.nextLine().trim();
+            int found=0;
             for(Customer customer : customers) {
             if(removeId.equalsIgnoreCase(customer.getId())){
                 customers.removeIf(c -> c.getId().equalsIgnoreCase(removeId));
-                System.out.println("Customer with ID " + removeId + " removed successfully!");
-            } else {
-                System.out.println("Customer with ID " + removeId + " not found!");
+                found=1;
+                break;
             }
-        }}
+        }if(found==1)  System.out.println("Customer with ID " + removeId + " removed successfully!");
+        else  System.out.println("Customer with ID " + removeId + " not found!");       
+    }
     
     public void viewAllCustomers(){
         if (customers.isEmpty()) {

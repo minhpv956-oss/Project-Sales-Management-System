@@ -15,10 +15,10 @@ public class SalesTransaction {
     private Date transactionDate;
     private ArrayList<OderDetail> orderDetails;
     private Scanner sc = new Scanner(System.in);
-    private Product product;
+    private ProductList productList;
     private OderDetail oderDetail;
-    public SalesTransaction(){
-
+    public SalesTransaction(Customerlist customerlist, ProductList productList){
+           
     }
 
     public SalesTransaction(String transactionId, Customer customer, double totalAmount) {
@@ -50,7 +50,7 @@ public class SalesTransaction {
         return orderDetails;
     }
 
-    public void  checkCustomer() {
+    public void  checkCustomer(Customer customer, Scanner sc) {
         System.out.println("Enter customer ID: ");
         String customerId = sc.nextLine();
         int found=0;
@@ -90,7 +90,7 @@ public class SalesTransaction {
     public void showTransaction(){
         System.out.println("Transaction ID:");
         this.transactionId = sc.nextLine();
-        checkCustomer();
+        checkCustomer(this.customer);
         caculatoTotal(this.customer, this.orderDetails);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         System.out.println("Date: " + formatter.format(transactionDate));

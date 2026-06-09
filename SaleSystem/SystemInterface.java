@@ -10,6 +10,8 @@ public class SystemInterface {
         // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss
         // dd/MM/yyyy");
         // Customerlist customerlist = new Customerlist();
+        Customerlist customerlist = new Customerlist();
+        ProductList productList = new ProductList();
 
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
@@ -33,17 +35,17 @@ public class SystemInterface {
 
                         case 1:
                             System.out.println("Manage Products");
-                            ProductList productList = new ProductList();
+                            
                             productList.menu();
                             break;
                         case 2:
                             System.out.println("Manage Customers");
-                                Customerlist customerlist = new Customerlist();
+                                
                             customerlist.chooseService();
                              break;
                         case 3:
                             System.out.println("Manage Sales Transactions");
-                            SalesTransaction salesTransaction= new SalesTransaction();
+                            SalesTransaction salesTransaction= new SalesTransaction(customerlist,productList);
                             salesTransaction.showTransaction();
                             break;
                         case 4:
