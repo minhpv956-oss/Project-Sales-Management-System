@@ -14,7 +14,7 @@ public class Product {
     private int stockQuantity;
     // danh mục sản phẩm
     private String category;
-
+//dwdwdwdwd
     // đơn vị tính
     public String unit;
     // đường dẫn ảnh
