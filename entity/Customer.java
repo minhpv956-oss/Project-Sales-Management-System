@@ -1,7 +1,9 @@
 
 package entity;
 public class Customer {
-
+//////cho quan oiw
+/// ///cho minhhh
+/// //cho nhat
     protected String id;
     private String name;
     private String address;
@@ -9,13 +11,12 @@ public class Customer {
 
     public Customer() {
     }
-    
+
     public Customer(String id,String name,String address,String phone){
         this.id = id;
         this.name = name;
         this.address = address;
         this.phone = phone;
-
     
     }
 
@@ -50,7 +51,11 @@ public class Customer {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    public void showCustomerInfo(){
+        System.out.println("Customer ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Address: " + address);
+        System.out.println("Phone: " + phone);
+    }
 
-    
-    
 }

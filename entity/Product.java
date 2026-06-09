@@ -12,7 +12,11 @@ public class Product {
     // số lượng tồn kho
     protected int stockQuantity;
     // danh mục sản phẩm
+
     protected String category;
+
+
+    private String category;
 
     // đơn vị tính
     protected String unit;
@@ -104,8 +108,58 @@ public class Product {
 
 
 
-   
-   
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+        this.category = category;
+System.out.println("ngu lol quan");
+        System.out.println("Product updated successfully!");
+    }
+
+    public void removeProduct(double id) {
+
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getId() == id) {
+                products.remove(i);
+                break;
+            }
+
+        }
+        System.out.println("Product removed successfully!");
+    }
+
+    public void viewAll() {
+        for (Product p : products) {
+            System.out.println("Product ID: " + p.getId());
+            System.out.println("Name: " + p.getName());
+            System.out.println("Price: " + p.getPrice());
+            System.out.println("Stock Quantity: " + p.getStockQuantity());
+            System.out.println("Category: " + p.getCategory());
+            System.out.println("-----------------------------");
+        }
+        System.out.println(" viewAll successfully!");
+    }
+
+    public void searchByNameOrCategory(String keyword) {
+        for (Product p : products) {
+            if (p.getName().toLowerCase().contains(keyword.toLowerCase())
+                    || p.getCategory().toLowerCase().contains(keyword.toLowerCase())) {
+                System.out.println("Product found: " + p.getId());
+            }
+        }
+        System.out.println(" searchByNameOrCategory successfully!");
+    }
+
+    public boolean isInStock() {
+        return stockQuantity > 0;
+    }
+
+    public double applyDiscount(double rate) {
+
+        return price * (1 - rate);
+
+    }
+>>>>>>> b8d90beaba0708c5f464d984e4ac0d972b52606a
 
     
 }

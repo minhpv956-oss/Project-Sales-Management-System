@@ -1,7 +1,6 @@
 
 package entity;
 
-
 public class SalesTransaction {
  
      private String transactionId;
@@ -44,6 +43,7 @@ public class SalesTransaction {
         this.productId = productId;
     }
 
+
     public int getQuantity() {
         return quantity;
     }
@@ -59,6 +59,6 @@ public class SalesTransaction {
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
+
     
-     
 }
