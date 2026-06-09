@@ -3,14 +3,12 @@ package entity;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Report extends SalesTransaction{
+public class Report {
 
     private String reportType;
     private Date reportDate;
 
-    public Report(String reportType, Date reportDate, String transactionId, String customerId, String productId, int quantity, double totalAmount) {
-        
-        super(transactionId, customerId, productId, quantity, totalAmount);
+    public Report(String reportType, Date reportDate) {
         this.reportType = reportType;
         this.reportDate = reportDate;
     }
@@ -31,145 +29,113 @@ public class Report extends SalesTransaction{
         this.reportDate = reportDate;
     }
 
-   
-    public void saleReport(ArrayList<SalesTransaction> transactions) {
+    // Generate Daily / Monthly Sales Report
+    public void salesReport(ArrayList<SalesTransaction> transactions) {
 
         double totalRevenue = 0;
-        int totalProductsSold = 0;
+        int totalOrders = transactions.size();
 
-        for (int i = 0; i < transactions.size(); i++) {
-            totalRevenue += transactions.get(i).getTotalAmount();
-            totalProductsSold += transactions.get(i).getQuantity();
+        for (SalesTransaction st : transactions) {
+            totalRevenue += st.getTotalAmount();
         }
 
-        System.out.println("\n========== SALES REPORT ==========");
-        System.out.println("Report Type       : " + reportType);
-        System.out.println("Report Date       : " + reportDate);
-        System.out.println("Total Transactions: " + transactions.size());
-        System.out.println("Products Sold     : " + totalProductsSold);
-        System.out.println("Total Revenue     : " + totalRevenue);
-        System.out.println("==================================\n");
+        System.out.println("\n===== SALES REPORT =====");
+        System.out.println("Report Type : " + reportType);
+        System.out.println("Report Date : " + reportDate);
+        System.out.println("Total Orders: " + totalOrders);
+        System.out.println("Revenue     : " + totalRevenue + " VND");
     }
 
-    
+    // Best-selling Products
     public void bestSellingProducts(ArrayList<SalesTransaction> transactions) {
 
-    String[] productNames = new String[transactions.size()];
-    int[] quantities = new int[transactions.size()];
+        String[] productNames = new String[100];
+        int[] quantities = new int[100];
 
-    int count = 0;
+        int count = 0;
 
-    for (int i = 0; i < transactions.size(); i++) {
+        for (SalesTransaction st : transactions) {
 
-        String name = transactions.get(i).getProductId();
-        boolean found = false;
+            for (OderDetail od : st.getOrderDetails()) {
 
-        for (int j = 0; j < count; j++) {
+                String productName = od.getProduct().getName();
+                boolean found = false;
 
-            if (productNames[j].equals(name)) {
+                for (int i = 0; i < count; i++) {
 
-                quantities[j] += transactions.get(i).getQuantity();
-                found = true;
-                break;
+                    if (productNames[i].equalsIgnoreCase(productName)) {
+
+                        quantities[i] += od.getQuantity();
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+
+                    productNames[count] = productName;
+                    quantities[count] = od.getQuantity();
+                    count++;
+                }
             }
         }
 
-        if (!found) {
+        System.out.println("\n===== BEST SELLING PRODUCTS =====");
 
-            productNames[count] = name;
-            quantities[count] = transactions.get(i).getQuantity();
-            count++;
+        for (int i = 0; i < count; i++) {
+
+            System.out.println(
+                    (i + 1)
+                    + ". "
+                    + productNames[i]
+                    + " | "
+                    + quantities[i]
+                    + " units sold");
         }
     }
 
-    for (int i = 0; i < count - 1; i++) {
+    // Customers with highest purchase value
+    public void highestPurchaseCustomer(ArrayList<SalesTransaction> transactions) {
 
-        for (int j = i + 1; j < count; j++) {
+        String[] customerNames = new String[100];
+        double[] purchases = new double[100];
 
-            if (quantities[j] > quantities[i]) {
+        int count = 0;
 
-                int tempQuantity = quantities[i];
-                quantities[i] = quantities[j];
-                quantities[j] = tempQuantity;
+        for (SalesTransaction st : transactions) {
 
-                String tempName = productNames[i];
-                productNames[i] = productNames[j];
-                productNames[j] = tempName;
+            String customerName = st.getCustomer().getName();
+            boolean found = false;
+
+            for (int i = 0; i < count; i++) {
+
+                if (customerNames[i].equalsIgnoreCase(customerName)) {
+
+                    purchases[i] += st.getTotalAmount();
+                    found = true;
+                    break;
+                }
             }
-        }
-    }
 
-    System.out.println("===== BEST SELLING PRODUCTS =====");
+            if (!found) {
 
-    for (int i = 0; i < count; i++) {
-
-        System.out.println(
-                (i + 1)
-                + ". "
-                + productNames[i]
-                + " | "
-                + quantities[i]
-                + " units sold");
-    }
-}
-
-public void highestPurchaseCustomer(ArrayList<SalesTransaction> transactions) {
-
-    String[] customerNames = new String[transactions.size()];
-    double[] purchases = new double[transactions.size()];
-
-    int count = 0;
-
-    for (int i = 0; i < transactions.size(); i++) {
-
-        String name = transactions.get(i).getCustomerId();
-        boolean found = false;
-
-        for (int j = 0; j < count; j++) {
-
-            if (customerNames[j].equals(name)) {
-
-                purchases[j] += transactions.get(i).getTotalAmount();
-                found = true;
-                break;
+                customerNames[count] = customerName;
+                purchases[count] = st.getTotalAmount();
+                count++;
             }
         }
 
-        if (!found) {
+        System.out.println("\n===== TOP CUSTOMERS =====");
 
-            customerNames[count] = name;
-            purchases[count] = transactions.get(i).getTotalAmount();
-            count++;
+        for (int i = 0; i < count; i++) {
+
+            System.out.println(
+                    (i + 1)
+                    + ". "
+                    + customerNames[i]
+                    + " | "
+                    + purchases[i]
+                    + " VND");
         }
     }
-
-    for (int i = 0; i < count - 1; i++) {
-
-        for (int j = i + 1; j < count; j++) {
-
-            if (purchases[j] > purchases[i]) {
-
-                double tempPurchase = purchases[i];
-                purchases[i] = purchases[j];
-                purchases[j] = tempPurchase;
-
-                String tempName = customerNames[i];
-                customerNames[i] = customerNames[j];
-                customerNames[j] = tempName;
-            }
-        }
-    }
-
-    System.out.println("===== Best Customer =====");
-
-    for (int i = 0; i < count; i++) {
-
-        System.out.println(
-                (i + 1)
-                + ". "
-                + customerNames[i]
-                + " | "
-                + purchases[i] + "VND.");
-    }
-}
 }
