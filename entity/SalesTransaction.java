@@ -109,5 +109,7 @@ private String transactionId;
         }
         System.out.println("------------------------------------");
         System.out.println("Total Amount: " + totalAmount + " VND");
+        transactions.add(this);
+
     }
 }
