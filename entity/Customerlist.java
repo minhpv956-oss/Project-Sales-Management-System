@@ -13,9 +13,13 @@ public class Customerlist extends Customer {
     public Customerlist(String id, String name, String address, String phone) {
         super(id, name, address, phone);
     }
-
-
-    
+    public ArrayList<Customer> getCustomerList() {
+        return customers;
+    }
+    public void setCustomerList(ArrayList<Customer> customers) {
+        this.customers = customers;
+    }
+ 
     public  void addCustomer(){
        System.out.println("Enter the number of customers you want to add: ");
        int n= sc.nextInt();

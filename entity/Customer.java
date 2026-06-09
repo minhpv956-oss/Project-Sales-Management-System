@@ -1,9 +1,7 @@
 
 package entity;
 public class Customer {
-//////cho quan oiw
-/// ///cho minhhh
-/// //cho nhat
+
     protected String id;
     private String name;
     private String address;

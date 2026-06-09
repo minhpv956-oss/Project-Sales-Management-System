@@ -1,11 +1,9 @@
 package SaleSystem;
 
-import java.util.Scanner;
-
 import entity.Customerlist;
-import entity.Product;
 import entity.ProductList;
-import entity.Customer;
+import entity.SalesTransaction;
+import java.util.Scanner;
 public class SystemInterface {
 
     public static void main(String[] args) {
@@ -29,7 +27,7 @@ public class SystemInterface {
 
                     System.out.print("Choose an option: ");
 
-                    int n = sc.nextInt();
+                    int n = Integer.parseInt(sc.nextLine());
 
                     switch (n) {
 
@@ -45,6 +43,8 @@ public class SystemInterface {
                              break;
                         case 3:
                             System.out.println("Manage Sales Transactions");
+                            SalesTransaction salesTransaction= new SalesTransaction();
+                            salesTransaction.showTransaction();
                             break;
                         case 4:
                             System.out.println("Reports");

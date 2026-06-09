@@ -18,6 +18,13 @@ public class ProductList extends Product {
             String imageUrl, java.sql.Date createdAt) {
         super(name, id, price, stockQuantity, category, unit, imageUrl, createdAt);
     }
+    //Minhung Them getter setter nhé
+    public Product[] getProductList() {
+        return productList;
+    }
+    public void setProductList(Product[] productList) {
+        this.productList = productList;
+    }
 
     // Hàm nhập thông tin sản phẩm từ bàn phím
     public Product inputProduct() {
