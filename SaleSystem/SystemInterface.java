@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import entity.Customerlist;
 import entity.Product;
+import entity.ProductList;
 import entity.Customer;
 public class SystemInterface {
 
@@ -34,7 +35,8 @@ public class SystemInterface {
 
                         case 1:
                             System.out.println("Manage Products");
-                            // productlist.chooseService();
+                            ProductList productList = new ProductList();
+                            productList.menu();
                             break;
                         case 2:
                             System.out.println("Manage Customers");
