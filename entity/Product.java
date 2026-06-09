@@ -2,39 +2,42 @@
 package entity;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 public class Product {
-    private String name;
+    protected String name;
     
-    private double id;
+    protected double id;
     
-    private double price;
+    protected double price;
     // số lượng tồn kho
-    private int stockQuantity;
+    protected int stockQuantity;
     // danh mục sản phẩm
-    private String category;
+    protected String category;
 
     // đơn vị tính
-    public String unit;
+    protected String unit;
     // đường dẫn ảnh
-    public String imageUrl;
+    protected String imageUrl;
     // ngày tạo sản phẩm
-    public Date createdAt;
+    protected Date createdAt;
+ 
 
-    private static ArrayList<Product> products = new ArrayList<>();
+    public Product() {
+    }   
 
-    public Product(String name, double id, double price, int stockQuantity, String category, String unit,
-            String imageUrl, Date createdAt) {
-        this.name = name;
+    public Product(String name, double id, double price, int stockQuantity, String category, String unit, String imageUrl, Date createdAt) {
         this.id = id;
+        this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.category = category;
         this.unit = unit;
         this.imageUrl = imageUrl;
         this.createdAt = createdAt;
+
+    
     }
+
 
     public String getName() {
         return name;
@@ -43,23 +46,20 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
-
-    public double getId() {
-        return id;
+    public String getId() {
+        return name;
     }
 
-    public void setId(double id) {
-        this.id = id;
+    public void setId(String name) {
+        this.name = name;
     }
 
     public double getPrice() {
         return price;
-    }
+    }       
 
     public void setPrice(double price) {
-        if (price > 0) {
-            this.price = price;
-        }
+        this.price = price;
     }
 
     public int getStockQuantity() {
@@ -67,10 +67,7 @@ public class Product {
     }
 
     public void setStockQuantity(int stockQuantity) {
-        if (stockQuantity >= 0) {
-            this.stockQuantity = stockQuantity;
-        }
-
+        this.stockQuantity = stockQuantity;
     }
 
     public String getCategory() {
@@ -81,92 +78,34 @@ public class Product {
         this.category = category;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
     public String getUnit() {
         return unit;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Date getCreatedAt() {
         return createdAt;
     }
 
-    // method
-
-    public void addProduct() {
-        products.add(this);
-        System.out.println("Product added successfully!");
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public void updateProduct(String name,
-            double price,
-            int stockQuantity,
-            String category) {
 
-        this.name = name;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-        this.category = category;
 
-        System.out.println("Product updated successfully!");
-    }
+   
+   
 
-    public void removeProduct(double id) {
-
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getId() == id) {
-                products.remove(i);
-                break;
-            }
-
-        }
-        System.out.println("Product removed successfully!");
-    }
-
-    public void viewAll() {
-        for (Product p : products) {
-            System.out.println("Product ID: " + p.getId());
-            System.out.println("Name: " + p.getName());
-            System.out.println("Price: " + p.getPrice());
-            System.out.println("Stock Quantity: " + p.getStockQuantity());
-            System.out.println("Category: " + p.getCategory());
-            System.out.println("-----------------------------");
-        }
-        System.out.println(" viewAll successfully!");
-    }
-
-    public void searchByNameOrCategory(String keyword) {
-        for (Product p : products) {
-            if (p.getName().toLowerCase().contains(keyword.toLowerCase())
-                    || p.getCategory().toLowerCase().contains(keyword.toLowerCase())) {
-                System.out.println("Product found: " + p.getId());
-            }
-        }
-        System.out.println(" searchByNameOrCategory successfully!");
-    }
-
-    public boolean isInStock() {
-        return stockQuantity > 0;
-    }
-
-    public double applyDiscount(double rate) {
-
-        return price * (1 - rate);
-
-    }
-
+    
 }
