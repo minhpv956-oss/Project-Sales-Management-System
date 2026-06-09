@@ -121,7 +121,7 @@ public class Product {
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.category = category;
-
+System.out.println("ngu lol quan");
         System.out.println("Product updated successfully!");
     }
 
