@@ -6,7 +6,7 @@ import java.sql.Date;
 public class Product {
     protected String name;
 
-    protected String   id;
+    protected String id;
 
     protected double price;
     // số lượng tồn kho
