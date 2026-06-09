@@ -16,12 +16,11 @@ public class Product {
     protected String category;
 
 
-    private String category;
 
     // đơn vị tính
-    protected String unit;
+    public String unit;
     // đường dẫn ảnh
-    protected String imageUrl;
+    public String imageUrl;
     // ngày tạo sản phẩm
     protected Date createdAt;
  
@@ -112,7 +111,7 @@ public class Product {
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.category = category;
-System.out.println("ngu lol quan");
+
         System.out.println("Product updated successfully!");
     }
 
@@ -159,7 +158,6 @@ System.out.println("ngu lol quan");
         return price * (1 - rate);
 
     }
->>>>>>> b8d90beaba0708c5f464d984e4ac0d972b52606a
 
     
 }
