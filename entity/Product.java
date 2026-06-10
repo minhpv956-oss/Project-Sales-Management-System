@@ -6,7 +6,7 @@ import java.sql.Date;
 public class Product {
     protected String name;
 
-    protected String   id;
+    protected String id;
 
     protected double price;
     // số lượng tồn kho
@@ -47,11 +47,11 @@ public class Product {
     }
 
     public String getId() {
-        return name;
+        return id;
     }
 
-    public void setId(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public double getPrice() {
