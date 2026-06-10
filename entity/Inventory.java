@@ -1,0 +1,60 @@
+package entity;
+
+import java.sql.Date;
+
+<<<<<<< HEAD
+public class Inventory extends Product {
+
+    public Inventory(String name, String id, double price,  int stockQuantity, String category, String unit String imageUrl, Date createdAt) {
+
+        super(name, id, price, stockQuantity,
+              category, unit, imageUrl, createdAt);
+=======
+public class Inventory {
+    
+    private String productId;
+    private int currentStock;
+    public Inventory(String productId, int currentStock){
+    this.currentStock = currentStock;
+    this.productId = productId;
+   
+>>>>>>> ac1e30e2c01f64b211b2c9e259440b633f1f7377
+    }
+
+    public boolean checkStock(int quantity) {
+        return quantity > 0 && stockQuantity >= quantity;
+    }
+
+    public boolean reduceStock(int quantity) {
+
+        if(quantity <= 0){
+            return false;
+        }
+
+        if(stockQuantity >= quantity){
+            stockQuantity -= quantity;
+            return true;
+        }
+
+        return false;
+    }
+
+    public void addStock(int quantity){
+
+        if(quantity > 0){
+            stockQuantity += quantity;
+        }
+    }
+
+    public void updateStock(int newStock){
+
+        if(newStock >= 0){
+            stockQuantity = newStock;
+        }
+    }
+
+    @Override
+public String toString() {
+    return String.format("ID: " + id + ", Name: " + name + ", Stock: " + stockQuantity);
+}
+}
