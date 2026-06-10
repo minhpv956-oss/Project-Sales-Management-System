@@ -11,7 +11,7 @@ public class Inventory extends Product {
               category, unit, imageUrl, createdAt);
 
 
-
+    }
     public boolean checkStock(int quantity) {
         return quantity > 0 && stockQuantity >= quantity;
     }
