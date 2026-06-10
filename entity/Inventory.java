@@ -2,14 +2,16 @@ package entity;
 
 import java.sql.Date;
 
+
 public class Inventory extends Product {
 
-    public Inventory(String name, String id, double price,  int stockQuantity, String category, String unit String imageUrl, Date createdAt) {
+    public Inventory(String name, String id, double price,  int stockQuantity, String category, String unit, String imageUrl, Date createdAt) {
 
         super(name, id, price, stockQuantity,
               category, unit, imageUrl, createdAt);
-    }
 
+
+    }
     public boolean checkStock(int quantity) {
         return quantity > 0 && stockQuantity >= quantity;
     }

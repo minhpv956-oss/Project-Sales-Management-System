@@ -18,15 +18,18 @@ public class ProductList extends Product {
             String imageUrl, java.sql.Date createdAt) {
         super(name, id, price, stockQuantity, category, unit, imageUrl, createdAt);
     }
-    //Minhung Them getter setter nhé
+
+    // Getters and Setters
     public Product[] getProductList() {
         return productList;
     }
+
     public void setProductList(Product[] productList) {
         this.productList = productList;
     }
 
-    // Hàm nhập thông tin sản phẩm từ bàn phím
+    // Structure inputProduct() 
+    
     public Product inputProduct() {
         System.out.println("Enter product name: ");
         String name = sc.nextLine();
@@ -44,7 +47,7 @@ public class ProductList extends Product {
         String unit = sc.nextLine();
         System.out.println("Enter product image URL: ");
         String imageUrl = sc.nextLine();
-        
+
         java.sql.Date createdAt = new java.sql.Date(System.currentTimeMillis());
 
         return new Product(name, id, price, stockQuantity, category, unit, imageUrl, createdAt);
@@ -79,19 +82,20 @@ public class ProductList extends Product {
                 System.out.println("Enter new product stock quantity: ");
                 int stockQuantity = sc.nextInt();
                 sc.nextLine(); // consume the newline character
-                
+
                 System.out.println("Enter new product category: ");
                 String category = sc.nextLine();
                 System.out.println("Enter new product unit: ");
                 String unit = sc.nextLine();
                 System.out.println("Enter new product image URL: ");
                 String imageUrl = sc.nextLine();
-                
+
                 java.sql.Date createdAt = new java.sql.Date(System.currentTimeMillis());
 
                 // Truyền currentId vào đối tượng cập nhật mới
-                Product updatedProduct = new Product(newName, currentId, price, stockQuantity, category, unit, imageUrl, createdAt);
-                
+                Product updatedProduct = new Product(newName, currentId, price, stockQuantity, category, unit, imageUrl,
+                        createdAt);
+
                 productList[i] = updatedProduct; // Thay thế sản phẩm cũ bằng sản phẩm mới
                 System.out.println("Product updated successfully!");
                 return;
@@ -108,7 +112,8 @@ public class ProductList extends Product {
         boolean hasResult = false;
 
         for (int i = 0; i < count; i++) {
-            if (productList[i].getName().toLowerCase().contains(keyword) || productList[i].getCategory().toLowerCase().contains(keyword)) {
+            if (productList[i].getName().toLowerCase().contains(keyword)
+                    || productList[i].getCategory().toLowerCase().contains(keyword)) {
                 System.out.println("Product Name: " + productList[i].getName());
                 System.out.println("Product ID: " + productList[i].getId());
                 System.out.println("Product Price: " + productList[i].getPrice());
@@ -201,5 +206,5 @@ public class ProductList extends Product {
             }
         }
     }
-    
+
 }
