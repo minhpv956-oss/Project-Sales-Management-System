@@ -10,16 +10,7 @@ public class Inventory extends Product {
         super(name, id, price, stockQuantity,
               category, unit, imageUrl, createdAt);
 
-public class Inventory {
-    
-    private String productId;
-    private int currentStock;
-    public Inventory(String productId, int currentStock){
-    this.currentStock = currentStock;
-    this.productId = productId;
-   
 
-    }
 
     public boolean checkStock(int quantity) {
         return quantity > 0 && stockQuantity >= quantity;
