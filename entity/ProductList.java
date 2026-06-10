@@ -6,7 +6,7 @@ public class ProductList extends Product {
 
     private int count = 0;
     private Product[] productList = new Product[100];
-    // Đưa Scanner lên đầu thuộc tính để dùng chung cho toàn bộ class
+  
     private Scanner sc = new Scanner(System.in);
 
     // Constructors
@@ -39,7 +39,7 @@ public class ProductList extends Product {
         double price = sc.nextDouble();
         System.out.println("Enter product stock quantity: ");
         int stockQuantity = sc.nextInt();
-        sc.nextLine(); // consume the newline character
+        sc.nextLine(); 
 
         System.out.println("Enter product category: ");
         String category = sc.nextLine();
@@ -51,9 +51,9 @@ public class ProductList extends Product {
         java.sql.Date createdAt = new java.sql.Date(System.currentTimeMillis());
 
         return new Product(name, id, price, stockQuantity, category, unit, imageUrl, createdAt);
+        
     }
-
-    // Hàm thêm sản phẩm vào mảng
+// Structure addProduct
     public void addProduct(Product newProduct) {
         if (count >= productList.length) {
             System.out.println("List is full! Cannot add more product.");
@@ -64,7 +64,6 @@ public class ProductList extends Product {
         System.out.println("Product added successfully!");
     }
 
-    // Hàm cập nhật sản phẩm (Đã sửa lỗi trùng biến và mất ID)
     public void updateProduct() {
         System.out.println("--- UPDATE PRODUCT ---");
         System.out.println("Enter product name to update: ");
@@ -81,7 +80,7 @@ public class ProductList extends Product {
                 double price = sc.nextDouble();
                 System.out.println("Enter new product stock quantity: ");
                 int stockQuantity = sc.nextInt();
-                sc.nextLine(); // consume the newline character
+                Integer.parseInt(sc.nextLine());
 
                 System.out.println("Enter new product category: ");
                 String category = sc.nextLine();
@@ -140,7 +139,7 @@ public class ProductList extends Product {
                 for (int j = i; j < count - 1; j++) {
                     productList[j] = productList[j + 1];
                 }
-                productList[count - 1] = null; // Xóa trắng ô cuối để giải phóng bộ nhớ
+                productList[count - 1] = null; 
                 count--;
                 System.out.println("Product removed successfully!");
                 return;
@@ -180,7 +179,7 @@ public class ProductList extends Product {
             System.out.println("0. Exit");
             System.out.print("Please choose an option: ");
             int choice = sc.nextInt();
-            sc.nextLine(); // consume the newline character
+            sc.nextLine(); 
 
             switch (choice) {
                 case 1:
