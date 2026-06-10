@@ -2,8 +2,11 @@ package SaleSystem;
 
 import entity.Customerlist;
 import entity.ProductList;
+import entity.Report;
 import entity.SalesTransaction;
 import java.util.Scanner;
+import java.util.Date;
+
 public class SystemInterface {
 
     public static void main(String[] args) {
@@ -35,21 +38,25 @@ public class SystemInterface {
 
                         case 1:
                             System.out.println("Manage Products");
-                            
+
                             productList.menu();
                             break;
                         case 2:
                             System.out.println("Manage Customers");
-                                
+
                             customerlist.chooseService();
-                             break;
+                            break;
                         case 3:
                             System.out.println("Manage Sales Transactions");
-                            SalesTransaction salesTransaction= new SalesTransaction(customerlist,productList);
+                            SalesTransaction salesTransaction = new SalesTransaction(customerlist, productList);
                             salesTransaction.showTransaction();
                             break;
                         case 4:
                             System.out.println("Reports");
+                            Report report = new Report("Monthly Report", new Date());
+                            report.salesReport(SalesTransaction.getTransactions());
+                            report.bestSellingProducts(SalesTransaction.getTransactions());
+                            report.highestPurchaseCustomer(SalesTransaction.getTransactions());
                             break;
                         case 5:
                             System.out.println("Exit Program");
