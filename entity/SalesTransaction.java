@@ -95,13 +95,14 @@ private String transactionId;
 
         while (true) {
             addOrderDetail();
-            System.out.print("Add another product? (y/n): ");
+            System.out.print("Add another product? (yes/no): ");
             String choice = sc.nextLine();
-            if (choice.equalsIgnoreCase("y")) break;
+            if (!choice.equalsIgnoreCase("yes")) break;
         }
 
         calculateTotal();
-
+        
+        
         System.out.println("----------- BILL SUMMARY -----------");
         System.out.printf("%-20s %-10s %-10s %-10s%n", "Product", "Qty", "Price", "Total");
         for (OderDetail od : orderDetails) {
@@ -110,6 +111,6 @@ private String transactionId;
         System.out.println("------------------------------------");
         System.out.println("Total Amount: " + totalAmount + " VND");
         transactions.add(this);
-
+    
     }
 }

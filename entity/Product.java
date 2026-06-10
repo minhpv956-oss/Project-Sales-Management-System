@@ -47,11 +47,11 @@ public class Product {
     }
 
     public String getId() {
-        return name;
+        return id;
     }
 
-    public void setId(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public double getPrice() {
