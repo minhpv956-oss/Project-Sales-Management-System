@@ -29,7 +29,6 @@ public class Report {
         this.reportDate = reportDate;
     }
 
-    // Generate Daily / Monthly Sales Report
     public void salesReport(ArrayList<SalesTransaction> transactions) {
 
         double totalRevenue = 0;
@@ -46,7 +45,7 @@ public class Report {
         System.out.println("Revenue     : " + totalRevenue + " VND");
     }
 
-    // Best-selling Products
+    
     public void bestSellingProducts(ArrayList<SalesTransaction> transactions) {
 
         String[] productNames = new String[100];
@@ -94,7 +93,7 @@ public class Report {
         }
     }
 
-    // Customers with highest purchase value
+    
     public void highestPurchaseCustomer(ArrayList<SalesTransaction> transactions) {
 
         String[] customerNames = new String[100];
