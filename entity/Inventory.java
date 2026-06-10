@@ -2,14 +2,14 @@ package entity;
 
 import java.sql.Date;
 
-<<<<<<< HEAD
+
 public class Inventory extends Product {
 
-    public Inventory(String name, String id, double price,  int stockQuantity, String category, String unit String imageUrl, Date createdAt) {
+    public Inventory(String name, String id, double price,  int stockQuantity, String category, String unit, String imageUrl, Date createdAt) {
 
         super(name, id, price, stockQuantity,
               category, unit, imageUrl, createdAt);
-=======
+
 public class Inventory {
     
     private String productId;
@@ -18,7 +18,7 @@ public class Inventory {
     this.currentStock = currentStock;
     this.productId = productId;
    
->>>>>>> ac1e30e2c01f64b211b2c9e259440b633f1f7377
+
     }
 
     public boolean checkStock(int quantity) {
