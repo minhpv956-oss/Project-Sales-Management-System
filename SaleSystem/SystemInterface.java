@@ -16,7 +16,7 @@ public class SystemInterface {
         // Customerlist customerlist = new Customerlist();
         Customerlist customerlist = new Customerlist();
         ProductList productList = new ProductList();
-        Inventory inventory = new Inventory();
+       Inventory inventory = new Inventory("Sample Product", "P001", 10.0, 100, "Category A", "pcs", "image.jpg", new java.sql.Date(System.currentTimeMillis()));
 
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
