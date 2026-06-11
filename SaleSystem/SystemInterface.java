@@ -16,16 +16,7 @@ public class SystemInterface {
         // Customerlist customerlist = new Customerlist();
         Customerlist customerlist = new Customerlist();
         ProductList productList = new ProductList();
-        Inventory inventory = new Inventory(
-        "Laptop Dell",
-        "P001",
-        15000000,
-        10,
-        "Laptop",
-        "Piece",
-        "img.png",
-        new Date()
-);
+        Inventory inventory = new Inventory();
 
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
