@@ -8,8 +8,9 @@ public class Inventory extends Product {
             String imageUrl, Date createdAt) {
 
         super(name, id, price, stockQuantity,
-                category, unit, imageUrl, createdAt);
-    }
+              category, unit, imageUrl, createdAt);
+
+
 
     public boolean checkStock(int quantity) {
         return quantity > 0 && stockQuantity >= quantity;

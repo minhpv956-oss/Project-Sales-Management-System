@@ -1,3 +1,4 @@
+
 package entity;
 
 import java.util.ArrayList;
@@ -29,10 +30,10 @@ public class Report {
         this.reportDate = reportDate;
     }
 
+    // 1. Daily / Monthly Sales Report
     public void salesReport(ArrayList<SalesTransaction> transactions) {
 
         double totalRevenue = 0;
-        int totalOrders = transactions.size();
 
         for (SalesTransaction st : transactions) {
             totalRevenue += st.getTotalAmount();
@@ -41,16 +42,15 @@ public class Report {
         System.out.println("\n===== SALES REPORT =====");
         System.out.println("Report Type : " + reportType);
         System.out.println("Report Date : " + reportDate);
-        System.out.println("Total Orders: " + totalOrders);
+        System.out.println("Total Orders: " + transactions.size());
         System.out.println("Revenue     : " + totalRevenue + " VND");
     }
 
-    
+    // 2. List Best-selling Products (Sorted High -> Low)
     public void bestSellingProducts(ArrayList<SalesTransaction> transactions) {
 
         String[] productNames = new String[100];
         int[] quantities = new int[100];
-
         int count = 0;
 
         for (SalesTransaction st : transactions) {
@@ -63,7 +63,6 @@ public class Report {
                 for (int i = 0; i < count; i++) {
 
                     if (productNames[i].equalsIgnoreCase(productName)) {
-
                         quantities[i] += od.getQuantity();
                         found = true;
                         break;
@@ -71,10 +70,26 @@ public class Report {
                 }
 
                 if (!found) {
-
                     productNames[count] = productName;
                     quantities[count] = od.getQuantity();
                     count++;
+                }
+            }
+        }
+
+        // Sort descending
+        for (int i = 0; i < count - 1; i++) {
+            for (int j = i + 1; j < count; j++) {
+
+                if (quantities[j] > quantities[i]) {
+
+                    int tempQuantity = quantities[i];
+                    quantities[i] = quantities[j];
+                    quantities[j] = tempQuantity;
+
+                    String tempName = productNames[i];
+                    productNames[i] = productNames[j];
+                    productNames[j] = tempName;
                 }
             }
         }
@@ -84,8 +99,7 @@ public class Report {
         for (int i = 0; i < count; i++) {
 
             System.out.println(
-                    (i + 1)
-                    + ". "
+                    (i + 1) + ". "
                     + productNames[i]
                     + " | "
                     + quantities[i]
@@ -93,12 +107,11 @@ public class Report {
         }
     }
 
-    
+    // 3. List Customers with Highest Purchase Value (Sorted High -> Low)
     public void highestPurchaseCustomer(ArrayList<SalesTransaction> transactions) {
 
         String[] customerNames = new String[100];
         double[] purchases = new double[100];
-
         int count = 0;
 
         for (SalesTransaction st : transactions) {
@@ -109,7 +122,6 @@ public class Report {
             for (int i = 0; i < count; i++) {
 
                 if (customerNames[i].equalsIgnoreCase(customerName)) {
-
                     purchases[i] += st.getTotalAmount();
                     found = true;
                     break;
@@ -117,10 +129,26 @@ public class Report {
             }
 
             if (!found) {
-
                 customerNames[count] = customerName;
                 purchases[count] = st.getTotalAmount();
                 count++;
+            }
+        }
+
+        // Sort descending
+        for (int i = 0; i < count - 1; i++) {
+            for (int j = i + 1; j < count; j++) {
+
+                if (purchases[j] > purchases[i]) {
+
+                    double tempPurchase = purchases[i];
+                    purchases[i] = purchases[j];
+                    purchases[j] = tempPurchase;
+
+                    String tempName = customerNames[i];
+                    customerNames[i] = customerNames[j];
+                    customerNames[j] = tempName;
+                }
             }
         }
 
@@ -129,8 +157,7 @@ public class Report {
         for (int i = 0; i < count; i++) {
 
             System.out.println(
-                    (i + 1)
-                    + ". "
+                    (i + 1) + ". "
                     + customerNames[i]
                     + " | "
                     + purchases[i]
@@ -138,3 +165,4 @@ public class Report {
         }
     }
 }
+
