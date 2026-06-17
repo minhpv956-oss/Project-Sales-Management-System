@@ -1,12 +1,12 @@
 package SaleSystem;
 
 import entity.Customerlist;
+import entity.Inventory;
 import entity.ProductList;
 import entity.Report;
 import entity.SalesTransaction;
-import entity.Inventory;
-import java.util.Scanner;
 import java.util.Date;
+import java.util.Scanner;
 
 public class SystemInterface {
 
@@ -15,7 +15,7 @@ public class SystemInterface {
         // dd/MM/yyyy");
         // Customerlist customerlist = new Customerlist();
         Customerlist customerlist = new Customerlist();
-        ProductList productList = new ProductList();
+        ProductList productList = new ProductList(100); //buoc phai truyen 1 tham so co định vì Minh dùng mảng tĩnh trong ProdcuctList
        Inventory inventory = new Inventory("Sample Product", "P001", 10.0, 100, "Category A", "pcs", "image.jpg", new java.sql.Date(System.currentTimeMillis()));
 
         try (Scanner sc = new Scanner(System.in)) {

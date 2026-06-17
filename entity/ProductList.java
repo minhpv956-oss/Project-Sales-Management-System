@@ -10,6 +10,9 @@ public class ProductList {
     public ProductList(int size) {
         this.List = new Product[size];
     }
+    public Product[] getProductList() {  // Mhung them getter dêt lấy qua bên oderdetail dùng được
+    return List;
+    }
 
     private Scanner sc = new Scanner(System.in);
 

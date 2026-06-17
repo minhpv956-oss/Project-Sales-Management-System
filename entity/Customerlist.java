@@ -104,8 +104,8 @@ public class Customerlist extends Customer {
 
                     System.out.print("Choose an option: ");
 
-                    int n = sc.nextInt();
-
+                    int n = Integer.parseInt(sc.nextLine());
+                 
                     switch(n) {
                         case 1:
                             System.out.println("Add new customer");

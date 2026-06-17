@@ -9,7 +9,7 @@ public class Inventory extends Product {
 
         super(name, id, price, stockQuantity,
               category, unit, imageUrl, createdAt);
-
+            }
 
 
     public boolean checkStock(int quantity) {
