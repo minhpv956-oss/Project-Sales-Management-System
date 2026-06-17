@@ -16,7 +16,7 @@ public class SystemInterface {
         // Customerlist customerlist = new Customerlist();
         Customerlist customerlist = new Customerlist();
         ProductList productList = new ProductList(100); //buoc phai truyen 1 tham so co định vì Minh dùng mảng tĩnh trong ProdcuctList
-       Inventory inventory = new Inventory("Sample Product", "P001", 10.0, 100, "Category A", "pcs", "image.jpg", new java.sql.Date(System.currentTimeMillis()));
+       
 
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
@@ -62,83 +62,21 @@ public class SystemInterface {
                             report.highestPurchaseCustomer(SalesTransaction.getTransactions());
                             break;
                         case 5:
+                             System.out.print("Enter Product ID: ");
+                             String id = sc.nextLine();
 
-    while (true) {
+                             Inventory inventory = productList.findInventoryById(id);
+                             if (inventory == null) {
+                                 System.out.println( "Product not found!");
 
-        System.out.println("\n===== INVENTORY MENU =====");
-        System.out.println(inventory);
+                             } else {
+                                 inventory.inventoryMenu();
 
-        System.out.println("1. Check Stock");
-        System.out.println("2. Reduce Stock");
-        System.out.println("3. Add Stock");
-        System.out.println("4. Update Stock");
-        System.out.println("5. Back");
+                                  }
 
-        int choice = Integer.parseInt(sc.nextLine());
+                            break;    
 
-        switch (choice) {
-
-            case 1:
-
-                System.out.print("Enter quantity: ");
-                int qtyCheck = Integer.parseInt(sc.nextLine());
-
-                if (inventory.checkStock(qtyCheck)) {
-                    System.out.println("Enough stock.");
-                } else {
-                    System.out.println("Not enough stock.");
-                }
-
-                break;
-
-            case 2:
-
-                System.out.print("Quantity to sell: ");
-                int qtySell = Integer.parseInt(sc.nextLine());
-
-                if (inventory.reduceStock(qtySell)) {
-                    System.out.println("Sale successful.");
-                } else {
-                    System.out.println("Sale failed.");
-                }
-
-                break;
-
-            case 3:
-
-                System.out.print("Quantity to add: ");
-                int qtyAdd = Integer.parseInt(sc.nextLine());
-
-                inventory.addStock(qtyAdd);
-
-                System.out.println("Stock added.");
-
-                break;
-
-            case 4:
-
-                System.out.print("New stock quantity: ");
-                int newStock = Integer.parseInt(sc.nextLine());
-
-                inventory.updateStock(newStock);
-
-                System.out.println("Stock updated.");
-
-                break;
-
-            case 5:
-                break;
-
-            default:
-                System.out.println("Invalid option.");
-        }
-
-        if(choice == 5){
-            break;
-        }
-    }
-
-    break;    
+       
                         case 6:
                             System.out.println("Exit Program");
                             return;
