@@ -1,41 +1,34 @@
-
 package entity;
 
 import java.sql.Date;
 
 public class Product {
-    protected String name;
 
-    protected String id;
-
-    protected double price;
-    // số lượng tồn kho
-    protected int stockQuantity;
-    // danh mục sản phẩm
-
-    protected String category;
-
-    // đơn vị tính
-    public String unit;
-    // đường dẫn ảnh
-    public String imageUrl;
-    // ngày tạo sản phẩm
-    protected Date createdAt;
+    private String name;
+    private String id;
+    private double price;
+    // lượng tồn kho
+    private int stockQuantity;
+    // loại
+    private String category;
+    // đơn vị
+    private String unit;
+    private String imageUrl;
+    private Date createdAt;
 
     public Product() {
     }
 
-    public Product(String name, String id, double price, int stockQuantity, String category, String unit,
-            String imageUrl, Date createdAt) {
-        this.id = id;
+    public Product(String name, String id, double price, int stockQuantity,
+            String category, String unit, String imageUrl, Date createdAt) {
         this.name = name;
+        this.id = id;
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.category = category;
         this.unit = unit;
         this.imageUrl = imageUrl;
         this.createdAt = createdAt;
-
     }
 
     public String getName() {
@@ -59,6 +52,9 @@ public class Product {
     }
 
     public void setPrice(double price) {
+        if (price < 0) {
+            System.out.println("invalid");
+        }
         this.price = price;
     }
 
@@ -67,7 +63,11 @@ public class Product {
     }
 
     public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
+        if (stockQuantity < 0) {
+            this.stockQuantity = 0;
+        } else {
+            this.stockQuantity = stockQuantity;
+        }
     }
 
     public String getCategory() {
