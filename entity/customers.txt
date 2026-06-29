@@ -1,0 +1,6 @@
+KH01,Nguyễn Văn An,123 Lê Lợi HCM,0901234567,VIP,52000,Diamond,0.15
+KH02,Trần Thị Bình,45 Nguyễn Huệ HCM,0912345678,VIP,12000,Silver,0.05
+KH03,Lê Hoàng Nam,78 Hai Bà Trưng HN,0923456789,VIP,35000,Gold,0.10
+KH04,Phạm Thị Cúc,12 Trần Hưng Đạo HCM,0934567890,Normal,5000,None,0.00
+KH05,Hoàng Minh Tuấn,99 Đinh Tiên Hoàng HN,0945678901,Normal,8500,None,0.00
+KH06,Võ Thị Lan,56 Pasteur HCM,0956789012,VIP,61000,Diamond,0.15

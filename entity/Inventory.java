@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Inventory extends Product {
     
     private Scanner sc = new Scanner(System.in);
+    
 
     public Inventory(String name, String id, double price, int stockQuantity, String category, String unit,
             String imageUrl, Date createdAt) {
