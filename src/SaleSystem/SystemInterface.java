@@ -4,7 +4,7 @@ import entity.Customerlist;
 import entity.ProductList;
 
 import java.util.Scanner;
-
+import entity.Report;
 public class SystemInterface {
 
     public static void main(String[] args) {
@@ -57,6 +57,8 @@ public class SystemInterface {
                             // report.salesReport(SalesTransaction.getTransactions());
                             // report.bestSellingProducts(SalesTransaction.getTransactions());
                             // report.highestPurchaseCustomer(SalesTransaction.getTransactions());
+                            Report report = new Report("Monthly Report", new java.util.Date());
+                            report.menuReport();
                             break;
                         case 5:
                             // System.out.print("Enter Product ID: ");
