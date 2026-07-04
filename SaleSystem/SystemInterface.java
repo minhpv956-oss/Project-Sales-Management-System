@@ -1,8 +1,11 @@
 package SaleSystem;
 
 import entity.Customerlist;
+import entity.Inventory;
 import entity.ProductList;
-
+import entity.Report;
+import entity.SalesTransaction;
+import java.util.Date;
 import java.util.Scanner;
 
 public class SystemInterface {
@@ -40,42 +43,42 @@ public class SystemInterface {
 
                             productList.menu();
                             break;
-                        case 2:
-                            System.out.println("Manage Customers");
+                        // case 2:
+                        // System.out.println("Manage Customers");
 
-                            customerlist.chooseService();
-                            break;
-                        case 3:
-                            // System.out.println("Manage Sales Transactions");
-                            // SalesTransaction salesTransaction = new SalesTransaction(customerlist,
-                            // productList);
-                            // salesTransaction.showTransaction();
-                            break;
-                        case 4:
-                            // System.out.println("Reports");
-                            // Report report = new Report("Monthly Report", new Date());
-                            // report.salesReport(SalesTransaction.getTransactions());
-                            // report.bestSellingProducts(SalesTransaction.getTransactions());
-                            // report.highestPurchaseCustomer(SalesTransaction.getTransactions());
-                            break;
-                        case 5:
-                            // System.out.print("Enter Product ID: ");
-                            // String id = sc.nextLine();
+                        // customerlist.chooseService();
+                        // break;
+                        // case 3:
+                        // System.out.println("Manage Sales Transactions");
+                        // SalesTransaction salesTransaction = new SalesTransaction(customerlist,
+                        // productList);
+                        // salesTransaction.showTransaction();
+                        // break;
+                        // case 4:
+                        // System.out.println("Reports");
+                        // Report report = new Report("Monthly Report", new Date());
+                        // report.salesReport(SalesTransaction.getTransactions());
+                        // report.bestSellingProducts(SalesTransaction.getTransactions());
+                        // report.highestPurchaseCustomer(SalesTransaction.getTransactions());
+                        // break;
+                        // case 5:
+                        // System.out.print("Enter Product ID: ");
+                        // String id = sc.nextLine();
 
-                            // Inventory inventory = productList.findInventoryById(id);
-                            // if (inventory == null) {
-                            // System.out.println( "Product not found!");
+                        // Inventory inventory = productList.findInventoryById(id);
+                        // if (inventory == null) {
+                        // System.out.println( "Product not found!");
 
-                            // } else {
-                            // inventory.inventoryMenu();
+                        // } else {
+                        // inventory.inventoryMenu();
 
-                            // }
+                        // }
 
-                            break;
+                        // break;
 
-                        case 6:
-                            System.out.println("Exit Program");
-                            return;
+                        // case 6:
+                        // System.out.println("Exit Program");
+                        // return;
                         default:
                             System.out.println("Invalid option");
                     }
