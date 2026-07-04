@@ -4,10 +4,13 @@ package entity;
 import java.util.ArrayList;
 import java.util.Date;
 
+import java.util.Scanner;
+
 public class Report {
 
     private String reportType;
     private Date reportDate;
+    private Scanner sc = new Scanner(System.in);
 
     public Report(String reportType, Date reportDate) {
         this.reportType = reportType;
@@ -30,139 +33,253 @@ public class Report {
         this.reportDate = reportDate;
     }
 
-    // 1. Daily / Monthly Sales Report
-    public void salesReport(ArrayList<SalesTransaction> transactions) {
+    // tổng bill tháng gần nhất
+    public void totalBillLastMonth() {
 
-        double totalRevenue = 0;
+        ArrayList<SalesTransaction> list = SalesTransaction.getTransactions();
 
-        for (SalesTransaction st : transactions) {
-            totalRevenue += st.getTotalAmount();
+        Date now = new Date();
+
+        long oneMonth = 30L * 24 * 60 * 60 * 1000;
+
+        double total = 0;
+
+        for (SalesTransaction st : list) {
+
+            if (now.getTime() - st.getTransactionDate().getTime() <= oneMonth) {
+
+                total += st.getTotalAmount();
+
+            }
+
         }
 
-        System.out.println("\n===== SALES REPORT =====");
-        System.out.println("Report Type : " + reportType);
-        System.out.println("Report Date : " + reportDate);
-        System.out.println("Total Orders: " + transactions.size());
-        System.out.println("Revenue     : " + totalRevenue + " VND");
+        System.out.printf("Revenue in last month: %.2f\n", total);
     }
 
-    // 2. List Best-selling Products (Sorted High -> Low)
-    public void bestSellingProducts(ArrayList<SalesTransaction> transactions) {
+    // search id
+    public void searchBillByCustomer() {
 
-        String[] productNames = new String[100];
-        int[] quantities = new int[100];
-        int count = 0;
+        System.out.print("Enter customer ID: ");
+        String id = sc.nextLine();
 
-        for (SalesTransaction st : transactions) {
+        ArrayList<SalesTransaction> list = SalesTransaction.getTransactions();
+        boolean found = false;
+        for (SalesTransaction st : list) {
+
+            if (st.getCustomerId().equalsIgnoreCase(id)) {
+                System.out.println("----------------------------");
+                System.out.println("Transaction ID: " + st.getTransactionId());
+                System.out.println("Date: " + st.getTransactionDate());
+                System.out.println("Total: " + st.getTotalAmount());
+                found = true;
+                for (OderDetail od : st.getOrderDetails()) {
+
+                    System.out.println(od.getProduct().getName() + "  Qty: " + od.getQuantity());
+
+                }
+
+            }
+
+        }
+        if (!found) {
+            System.out.println("Not found!");
+        }
+
+    }
+
+    // rank mua
+    public void rankingCustomer() {
+
+        ArrayList<SalesTransaction> list = SalesTransaction.getTransactions();
+        ArrayList<Customer> customers = new ArrayList<>();
+
+        // Lấy danh sách khách hàng không trùng
+        for (SalesTransaction st : list) {
+
+            Customer c = st.getCustomer();
+
+            if (!customers.contains(c)) {
+                customers.add(c);
+            }
+        }
+
+        // Sort
+        for (int i = 0; i < customers.size() - 1; i++) {
+
+            for (int j = i + 1; j < customers.size(); j++) {
+
+                if (totalCustomer(customers.get(j)) > totalCustomer(customers.get(i))) {
+
+                    Customer temp = customers.get(i);
+                    customers.set(i, customers.get(j));
+                    customers.set(j, temp);
+
+                }
+
+            }
+
+        }
+
+        
+        System.out.printf("%-10s %-20s %-25s %-15s %-15s\n",
+                "ID", "Name", "Address", "Total", "VIP Level");
+
+      //print
+        for (Customer c : customers) {
+
+            String vipLevel = "Normal";
+
+            if (c instanceof VIPCustomer) {
+                VIPCustomer vip = (VIPCustomer) c;
+                vipLevel = vip.getVipLevel();
+            }
+
+            System.out.printf("%-10s %-20s %-25s %-15.2f %-15s\n",
+                    c.getId(),
+                    c.getName(),
+                    c.getAddress(),
+                    totalCustomer(c),
+                    vipLevel);
+        }
+
+    }
+
+    public double totalCustomer(Customer c) {
+
+        double total = 0;
+
+        ArrayList<SalesTransaction> list = SalesTransaction.getTransactions();
+
+        for (SalesTransaction st : list) {
+
+            if (st.getCustomer().getId().equalsIgnoreCase(c.getId())) {
+
+                total += st.getTotalAmount();
+
+            }
+
+        }
+
+        return total;
+    }
+
+    // top 5 san pham
+    public int totalSold(Product p) {
+        //tinh doanh thu
+        int total = 0;
+
+        ArrayList<SalesTransaction> list = SalesTransaction.getTransactions();
+
+        for (SalesTransaction st : list) {
 
             for (OderDetail od : st.getOrderDetails()) {
 
-                String productName = od.getProduct().getName();
-                boolean found = false;
-
-                for (int i = 0; i < count; i++) {
-
-                    if (productNames[i].equalsIgnoreCase(productName)) {
-                        quantities[i] += od.getQuantity();
-                        found = true;
-                        break;
-                    }
+                if (od.getProduct().getId().equalsIgnoreCase(p.getId())) {
+                    total += od.getQuantity();
                 }
 
-                if (!found) {
-                    productNames[count] = productName;
-                    quantities[count] = od.getQuantity();
-                    count++;
-                }
             }
+
         }
 
-        // Sort descending
-        for (int i = 0; i < count - 1; i++) {
-            for (int j = i + 1; j < count; j++) {
+        return total;
+    }
 
-                if (quantities[j] > quantities[i]) {
+    public void top5Product() {
 
-                    int tempQuantity = quantities[i];
-                    quantities[i] = quantities[j];
-                    quantities[j] = tempQuantity;
+        ArrayList<SalesTransaction> list = SalesTransaction.getTransactions();
 
-                    String tempName = productNames[i];
-                    productNames[i] = productNames[j];
-                    productNames[j] = tempName;
+        ArrayList<Product> products = new ArrayList<>();
+
+        // Lấy danh sách sản phẩm không trùng
+        for (SalesTransaction st : list) {
+
+            for (OderDetail od : st.getOrderDetails()) {
+
+                Product p = od.getProduct();
+
+                if (!products.contains(p)) {
+                    products.add(p);
                 }
+
             }
+
         }
 
-        System.out.println("\n===== BEST SELLING PRODUCTS =====");
+        // Sort
+        for (int i = 0; i < products.size() - 1; i++) {
 
-        for (int i = 0; i < count; i++) {
+            for (int j = i + 1; j < products.size(); j++) {
 
-            System.out.println(
-                    (i + 1) + ". "
-                    + productNames[i]
-                    + " | "
-                    + quantities[i]
-                    + " units sold");
+                if (totalSold(products.get(j)) > totalSold(products.get(i))) {
+
+                    Product temp = products.get(i);
+                    products.set(i, products.get(j));
+                    products.set(j, temp);
+
+                }
+
+            }
+
+        }
+
+        // print 
+        System.out.printf("%-10s %-25s %-15s\n",
+                "Product ID", "Product Name", "Quantity Sold");
+
+        int limit = Math.min(5, products.size());
+
+        for (int i = 0; i < limit; i++) {
+
+            Product p = products.get(i);
+
+            System.out.printf("%-10s %-25s %-15d\n",
+                    p.getId(),
+                    p.getName(),
+                    totalSold(p));
         }
     }
 
-    // 3. List Customers with Highest Purchase Value (Sorted High -> Low)
-    public void highestPurchaseCustomer(ArrayList<SalesTransaction> transactions) {
+    // menu
+    public void menuReport() {
 
-        String[] customerNames = new String[100];
-        double[] purchases = new double[100];
-        int count = 0;
+        int choice;
 
-        for (SalesTransaction st : transactions) {
+        do {
 
-            String customerName = st.getCustomer().getName();
-            boolean found = false;
+            System.out.println("===== REPORT =====");
+            System.out.println("1. Revenue of last month");
+            System.out.println("2. Bills by Customer");
+            System.out.println("3. Customer Ranking");
+            System.out.println("4. Top 5 Products");
+            System.out.println("0. Exit");
 
-            for (int i = 0; i < count; i++) {
+            choice = Integer.parseInt(sc.nextLine());
 
-                if (customerNames[i].equalsIgnoreCase(customerName)) {
-                    purchases[i] += st.getTotalAmount();
-                    found = true;
+            switch (choice) {
+
+                case 1:
+                    totalBillLastMonth();
                     break;
-                }
+
+                case 2:
+                    searchBillByCustomer();
+                    break;
+
+                case 3:
+                    rankingCustomer();
+                    break;
+
+                case 4:
+                    top5Product();
+                    break;
+
+                default:
+                    break;
             }
 
-            if (!found) {
-                customerNames[count] = customerName;
-                purchases[count] = st.getTotalAmount();
-                count++;
-            }
-        }
+        } while (choice != 0);
 
-        // Sort descending
-        for (int i = 0; i < count - 1; i++) {
-            for (int j = i + 1; j < count; j++) {
-
-                if (purchases[j] > purchases[i]) {
-
-                    double tempPurchase = purchases[i];
-                    purchases[i] = purchases[j];
-                    purchases[j] = tempPurchase;
-
-                    String tempName = customerNames[i];
-                    customerNames[i] = customerNames[j];
-                    customerNames[j] = tempName;
-                }
-            }
-        }
-
-        System.out.println("\n===== TOP CUSTOMERS =====");
-
-        for (int i = 0; i < count; i++) {
-
-            System.out.println(
-                    (i + 1) + ". "
-                    + customerNames[i]
-                    + " | "
-                    + purchases[i]
-                    + " VND");
-        }
     }
 }
-
