@@ -55,5 +55,8 @@ public class Customer {
         System.out.println("Address: " + address);
         System.out.println("Phone: " + phone);
     }
+    public String toFileString() {
+    return "NORMAL," + id + "," + name + "," + address + "," + phone;
+}
 
 }

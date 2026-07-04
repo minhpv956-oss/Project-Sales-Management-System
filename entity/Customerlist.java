@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Customerlist extends Customer {
@@ -8,8 +9,51 @@ public class Customerlist extends Customer {
     private ArrayList<Customer> customers;
     private Scanner sc = new Scanner(System.in);
 
+    private static final String FILE_NAME = "customers.txt";
+
+    private Customer parseCustomerLine(String line) {
+        String[] p = line.split(",");
+        // p[0]=id, p[1]=name, p[2]=address, p[3]=phone,
+        // p[4]=type (VIP/Normal), p[5]=totalSpent, p[6]=tier, p[7]=discount
+
+        String id = p[0];
+        String name = p[1];
+        String address = p[2];
+        String phone = p[3];
+        String type = p[4]; // cột quyết định VIP hay Normal
+
+        if (type.equalsIgnoreCase("VIP")) {
+            String tier = p[6];                          // Diamond/Gold/Silver
+            double discountRate = Double.parseDouble(p[7]);
+            double loyaltyPoints = Double.parseDouble(p[5]); // dùng tạm totalSpent làm loyaltyPoints ban đầu
+
+            // Lưu ý thứ tự tham số constructor của VIPCustomer:
+            // VIPCustomer(id, name, address, phone, vipLevel, discountRate, loyaltyPoints)
+            return new VIPCustomer(id, name, address, phone, tier, discountRate, loyaltyPoints);
+        } else {
+            return new Customer(id, name, address, phone);
+        }
+    }
+
     public Customerlist() {
         this.customers = new ArrayList<>();
+        loadFromFile(); // tự nạp dữ liệu cũ khi khởi tạo
+    }
+
+    public void loadFromFile() {
+        List<String> lines = FileHelper.readlines(FILE_NAME);
+        customers.clear();
+        for (String line : lines) {
+            customers.add(parseCustomerLine(line));
+        }
+    }
+
+    public void saveToFile() {
+        List<String> lines = new ArrayList<>();
+        for (Customer c : customers) {
+            lines.add(c.toFileString());
+        }
+        FileHelper.writeLines(FILE_NAME, lines);
     }
 
     public Customerlist(String id, String name, String address, String phone) {
@@ -23,8 +67,6 @@ public class Customerlist extends Customer {
     public void setCustomerList(ArrayList<Customer> customers) {
         this.customers = customers;
     }
-
-    
 
     public void addCustomer() {
         System.out.println("Enter the number of customers you want to add: ");
@@ -66,8 +108,8 @@ public class Customerlist extends Customer {
             }
         }
         if (found == 1) {
-            System.out.println("Customer with ID " + getId() + " updated successfully!"); 
-        }else {
+            System.out.println("Customer with ID " + getId() + " updated successfully!");
+        } else {
             System.out.println("Customer with ID " + newid + " not found!");
         }
     }
@@ -84,8 +126,8 @@ public class Customerlist extends Customer {
             }
         }
         if (found == 1) {
-            System.out.println("Customer with ID " + removeId + " removed successfully!"); 
-        }else {
+            System.out.println("Customer with ID " + removeId + " removed successfully!");
+        } else {
             System.out.println("Customer with ID " + removeId + " not found!");
         }
     }
