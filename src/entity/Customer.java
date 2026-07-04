@@ -55,8 +55,10 @@ public class Customer {
         System.out.println("Address: " + address);
         System.out.println("Phone: " + phone);
     }
-    public String toFileString() {
-    return "NORMAL," + id + "," + name + "," + address + "," + phone;
+public String toFileString() {
+    // Định dạng mong đợi: id, name, address, phone, type, loyaltyPoints, tier, discount
+    // Với Normal, ta có thể ghi các giá trị mặc định cho phần còn lại
+    return id + "," + getName() + "," + getAddress() + "," + getPhone() + ",Normal,0,None,0.00";
 }
 
 }

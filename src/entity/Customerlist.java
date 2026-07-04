@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Customerlist extends Customer {
+public class Customerlist extends Customer{
 
     private ArrayList<Customer> customers;
+    public void setCustomers(ArrayList<Customer> customers) {
+        this.customers = customers;
+    }
+
     private Scanner sc = new Scanner(System.in);
 
     private static final String FILE_NAME = "customers.txt";
@@ -20,7 +24,7 @@ public class Customerlist extends Customer {
         String name = p[1];
         String address = p[2];
         String phone = p[3];
-        String type = p[4]; // cột quyết định VIP hay Normal
+        String type = p[4];
 
         if (type.equalsIgnoreCase("VIP")) {
             String tier = p[6];                          // Diamond/Gold/Silver
@@ -41,7 +45,7 @@ public class Customerlist extends Customer {
     }
 
     public void loadFromFile() {
-        List<String> lines = FileHelper.readlines(FILE_NAME);
+        List<String> lines = FileHelper.readLines(FILE_NAME);
         customers.clear();
         for (String line : lines) {
             customers.add(parseCustomerLine(line));
@@ -54,18 +58,6 @@ public class Customerlist extends Customer {
             lines.add(c.toFileString());
         }
         FileHelper.writeLines(FILE_NAME, lines);
-    }
-
-    public Customerlist(String id, String name, String address, String phone) {
-        super(id, name, address, phone);
-    }
-
-    public ArrayList<Customer> getCustomerList() {
-        return customers;
-    }
-
-    public void setCustomerList(ArrayList<Customer> customers) {
-        this.customers = customers;
     }
 
     public void addCustomer() {
@@ -84,6 +76,7 @@ public class Customerlist extends Customer {
             String customerphone = sc.nextLine();
             Customer newCustomer = new Customer(customerid, customername, customeraddress, customerphone);
             customers.add(newCustomer);
+            saveToFile(); 
             System.out.println("Customer added successfully!");
         }
     }
@@ -104,11 +97,13 @@ public class Customerlist extends Customer {
                 customer.setAddress(newaddress);
                 customer.setPhone(newphone);
                 found = 1;
+                 saveToFile(); 
                 break;
             }
         }
         if (found == 1) {
-            System.out.println("Customer with ID " + getId() + " updated successfully!");
+           
+            System.out.println("Customer with ID " + newid + " updated successfully!");
         } else {
             System.out.println("Customer with ID " + newid + " not found!");
         }
@@ -122,10 +117,12 @@ public class Customerlist extends Customer {
             if (removeId.equalsIgnoreCase(customer.getId())) {
                 customers.removeIf(c -> c.getId().equalsIgnoreCase(removeId));
                 found = 1;
+                 saveToFile(); 
                 break;
             }
         }
         if (found == 1) {
+           
             System.out.println("Customer with ID " + removeId + " removed successfully!");
         } else {
             System.out.println("Customer with ID " + removeId + " not found!");
@@ -193,5 +190,9 @@ public class Customerlist extends Customer {
             }
 
         }
+    }
+
+    public ArrayList<Customer> getCustomers() {
+        return customers;
     }
 }

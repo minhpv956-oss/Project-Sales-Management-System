@@ -67,7 +67,12 @@ public class VIPCustomer extends Customer {
         System.out.println("VIP Level: " + vipLevel);
         System.out.println("Discount Rate: " + (discountRate * 100) + "%");
     }
-
+    @Override
+public String toFileString() {
+    // Định dạng mong đợi: id, name, address, phone, type, loyaltyPoints, tier, discount
+    return getId() + "," + getName() + "," + getAddress() + "," + getPhone() 
+         + ",VIP," + getLoyaltyPoints() + "," + getVipLevel() + "," + getDiscountRate();
+}
     
     
 }

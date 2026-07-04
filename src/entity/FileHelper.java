@@ -15,7 +15,7 @@ import java.util.List;
 public class FileHelper {
 
     //read file 
-    public static List<String> readlines(String fileName){
+    public static List<String> readLines(String fileName){
         List<String> lines = new ArrayList<>();
         File file = new File(fileName);
         if(!file.exists()) return lines;
@@ -28,7 +28,7 @@ public class FileHelper {
                 }
             }
         }catch  (IOException e){
-            System.out.println("Error reading file: "+fileName);;
+            System.out.println("Error reading file: "+fileName +e.getMessage());;
         }
         return lines;
     }
