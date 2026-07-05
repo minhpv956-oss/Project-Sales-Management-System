@@ -30,10 +30,7 @@ public class Customerlist extends Customer {
         if (type.equalsIgnoreCase("VIP")) {
             String tier = p[6];                          // Diamond/Gold/Silver
             double discountRate = Double.parseDouble(p[7]);
-            double loyaltyPoints = Double.parseDouble(p[5]); // dùng tạm totalSpent làm loyaltyPoints ban đầu
-
-            // Lưu ý thứ tự tham số constructor của VIPCustomer:
-            // VIPCustomer(id, name, address, phone, vipLevel, discountRate, loyaltyPoints)
+            double loyaltyPoints = Double.parseDouble(p[5]); 
             return new VIPCustomer(id, name, address, phone, tier, discountRate, loyaltyPoints);
         } else {
             return new Customer(id, name, address, phone);
