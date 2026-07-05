@@ -1,119 +1,154 @@
-
 package entity;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
-
 import java.util.Scanner;
 
 public class Report {
 
-    private String reportType;
-    private Date reportDate;
+    private Customerlist customerList;
+    private Inventory inventory;
     private Scanner sc = new Scanner(System.in);
 
-    public Report(String reportType, Date reportDate) {
-        this.reportType = reportType;
-        this.reportDate = reportDate;
+    public Report(Customerlist customerList, Inventory inventory) {
+
+        this.customerList = customerList;
+        this.inventory = inventory;
+
+        customerList.loadFromFile();
+        inventory.loadData();
+
+        new SalesTransaction(customerList, inventory);
     }
 
-    public String getReportType() {
-        return reportType;
-    }
 
-    public void setReportType(String reportType) {
-        this.reportType = reportType;
-    }
 
-    public Date getReportDate() {
-        return reportDate;
-    }
-
-    public void setReportDate(Date reportDate) {
-        this.reportDate = reportDate;
-    }
-
-    // tổng bill tháng gần nhất
     public void totalBillLastMonth() {
 
-        ArrayList<SalesTransaction> list = SalesTransaction.getTransactions();
+        ArrayList<Sale> sales = SalesTransaction.getTransactions();
 
-        Date now = new Date();
-
-        long oneMonth = 30L * 24 * 60 * 60 * 1000;
+        LocalDate today = LocalDate.now();
 
         double total = 0;
 
-        for (SalesTransaction st : list) {
+        for (Sale sale : sales) {
 
-            if (now.getTime() - st.getTransactionDate().getTime() <= oneMonth) {
+            LocalDate saleDate = LocalDate.parse(sale.getDate());
 
-                total += st.getTotalAmount();
+            long days = ChronoUnit.DAYS.between(saleDate, today);
+
+            if (days >= 0 && days <= 30) {
+
+                total += sale.getTotalAmount();
 
             }
 
         }
 
-        System.out.printf("Revenue in last month: %.2f\n", total);
+        System.out.println("----------------------------------------");
+        System.out.printf("Revenue of last 30 days : %.2f VND\n", total);
+        System.out.println("----------------------------------------");
     }
 
-    // search id
+    
+
     public void searchBillByCustomer() {
 
-        System.out.print("Enter customer ID: ");
-        String id = sc.nextLine();
+        System.out.print("Enter Customer ID: ");
+        String customerId = sc.nextLine().trim();
 
-        ArrayList<SalesTransaction> list = SalesTransaction.getTransactions();
+        ArrayList<Sale> sales = SalesTransaction.getTransactions();
+        ArrayList<SaleItem> items = SalesTransaction.getSaleItems();
+
         boolean found = false;
-        for (SalesTransaction st : list) {
 
-            if (st.getCustomerId().equalsIgnoreCase(id)) {
-                System.out.println("----------------------------");
-                System.out.println("Transaction ID: " + st.getTransactionId());
-                System.out.println("Date: " + st.getTransactionDate());
-                System.out.println("Total: " + st.getTotalAmount());
+        for (Sale sale : sales) {
+
+            if (sale.getCustomerId().equalsIgnoreCase(customerId)) {
+
                 found = true;
-                for (OderDetail od : st.getOrderDetails()) {
 
-                    System.out.println(od.getProduct().getName() + "  Qty: " + od.getQuantity());
+                System.out.println("\n======================================");
+                System.out.println("Sale ID : " + sale.getSaleId());
+                System.out.println("Date    : " + sale.getDate());
+                System.out.printf("Total   : %,.0f VND\n", sale.getTotalAmount());
+
+                System.out.println("--------------------------------------");
+                System.out.printf("%-10s %-25s %-8s %-12s\n",
+                        "ID", "Product", "Qty", "Subtotal");
+
+                for (SaleItem item : items) {
+
+                    if (item.getSaleId().equalsIgnoreCase(sale.getSaleId())) {
+
+                        System.out.printf("%-10s %-25s %-8d %.2f\n",
+                                item.getProductId(),
+                                item.getProductName(),
+                                item.getQuantity(),
+                                item.getSubtotal());
+
+                    }
 
                 }
+
+                System.out.println("======================================");
 
             }
 
         }
+
         if (!found) {
-            System.out.println("Not found!");
+
+            System.out.println("No bill found!");
+
         }
 
     }
 
-    // rank mua
+       
+
     public void rankingCustomer() {
 
-        ArrayList<SalesTransaction> list = SalesTransaction.getTransactions();
-        ArrayList<Customer> customers = new ArrayList<>();
+        ArrayList<Customer> customers = customerList.getCustomers();
+        ArrayList<Sale> sales = SalesTransaction.getTransactions();
 
-        // Lấy danh sách khách hàng không trùng
-        for (SalesTransaction st : list) {
+        ArrayList<Customer> rankList = new ArrayList<>();
+        ArrayList<Double> totalList = new ArrayList<>();
 
-            Customer c = st.getCustomer();
+        
+        for (Customer customer : customers) {
 
-            if (!customers.contains(c)) {
-                customers.add(c);
+            double total = 0;
+
+            for (Sale sale : sales) {
+
+                if (sale.getCustomerId().equalsIgnoreCase(customer.getId())) {
+
+                    total += sale.getTotalAmount();
+
+                }
+
             }
+
+            rankList.add(customer);
+            totalList.add(total);
+
         }
 
-        // Sort
-        for (int i = 0; i < customers.size() - 1; i++) {
+        for (int i = 0; i < totalList.size() - 1; i++) {
 
-            for (int j = i + 1; j < customers.size(); j++) {
+            for (int j = i + 1; j < totalList.size(); j++) {
 
-                if (totalCustomer(customers.get(j)) > totalCustomer(customers.get(i))) {
+                if (totalList.get(j) > totalList.get(i)) {
 
-                    Customer temp = customers.get(i);
-                    customers.set(i, customers.get(j));
-                    customers.set(j, temp);
+                    double tempMoney = totalList.get(i);
+                    totalList.set(i, totalList.get(j));
+                    totalList.set(j, tempMoney);
+
+                    Customer tempCustomer = rankList.get(i);
+                    rankList.set(i, rankList.get(j));
+                    rankList.set(j, tempCustomer);
 
                 }
 
@@ -121,141 +156,140 @@ public class Report {
 
         }
 
-        
-        System.out.printf("%-10s %-20s %-25s %-15s %-15s\n",
-                "ID", "Name", "Address", "Total", "VIP Level");
+        System.out.println("==========================================================================================");
+        System.out.printf("%-10s %-20s %-25s %-18s %-12s\n",
+                "ID", "Name", "Address", "Total Purchase", "VIP");
 
-      //print
-        for (Customer c : customers) {
+        System.out.println("==========================================================================================");
 
-            String vipLevel = "Normal";
+        for (int i = 0; i < rankList.size(); i++) {
 
-            if (c instanceof VIPCustomer) {
-                VIPCustomer vip = (VIPCustomer) c;
-                vipLevel = vip.getVipLevel();
-            }
+            Customer c = rankList.get(i);
 
-            System.out.printf("%-10s %-20s %-25s %-15.2f %-15s\n",
+            System.out.printf("%-10s %-20s %-25s %.2f %-12s\n",
                     c.getId(),
                     c.getName(),
                     c.getAddress(),
-                    totalCustomer(c),
-                    vipLevel);
-        }
-
-    }
-
-    public double totalCustomer(Customer c) {
-
-        double total = 0;
-
-        ArrayList<SalesTransaction> list = SalesTransaction.getTransactions();
-
-        for (SalesTransaction st : list) {
-
-            if (st.getCustomer().getId().equalsIgnoreCase(c.getId())) {
-
-                total += st.getTotalAmount();
-
-            }
+                    totalList.get(i),
+                    c.getTier());
 
         }
 
-        return total;
+        System.out.println("==========================================================================================");
+
     }
 
-    // top 5 san pham
-    public int totalSold(Product p) {
-        //tinh doanh thu
-        int total = 0;
 
-        ArrayList<SalesTransaction> list = SalesTransaction.getTransactions();
-
-        for (SalesTransaction st : list) {
-
-            for (OderDetail od : st.getOrderDetails()) {
-
-                if (od.getProduct().getId().equalsIgnoreCase(p.getId())) {
-                    total += od.getQuantity();
-                }
-
-            }
-
-        }
-
-        return total;
-    }
 
     public void top5Product() {
 
-        ArrayList<SalesTransaction> list = SalesTransaction.getTransactions();
+        ArrayList<SaleItem> items = SalesTransaction.getSaleItems();
 
-        ArrayList<Product> products = new ArrayList<>();
+        ArrayList<String> productIds = new ArrayList<>();
+        ArrayList<String> productNames = new ArrayList<>();
+        ArrayList<Integer> quantitySold = new ArrayList<>();
 
-        // Lấy danh sách sản phẩm không trùng
-        for (SalesTransaction st : list) {
+        
+        for (SaleItem item : items) {
 
-            for (OderDetail od : st.getOrderDetails()) {
+            int index = -1;
 
-                Product p = od.getProduct();
+            for (int i = 0; i < productIds.size(); i++) {
 
-                if (!products.contains(p)) {
-                    products.add(p);
+                if (productIds.get(i).equalsIgnoreCase(item.getProductId())) {
+
+                    index = i;
+                    break;
+
+                }
+
+            }
+
+            if (index == -1) {
+
+                productIds.add(item.getProductId());
+                productNames.add(item.getProductName());
+                quantitySold.add(item.getQuantity());
+
+            } else {
+
+                quantitySold.set(index,
+                        quantitySold.get(index) + item.getQuantity());
+
+            }
+
+        }
+
+      
+        for (int i = 0; i < quantitySold.size() - 1; i++) {
+
+            for (int j = i + 1; j < quantitySold.size(); j++) {
+
+                if (quantitySold.get(j) > quantitySold.get(i)) {
+
+                    int tempQty = quantitySold.get(i);
+                    quantitySold.set(i, quantitySold.get(j));
+                    quantitySold.set(j, tempQty);
+
+                    String tempId = productIds.get(i);
+                    productIds.set(i, productIds.get(j));
+                    productIds.set(j, tempId);
+
+                    String tempName = productNames.get(i);
+                    productNames.set(i, productNames.get(j));
+                    productNames.set(j, tempName);
+
                 }
 
             }
 
         }
 
-        // Sort
-        for (int i = 0; i < products.size() - 1; i++) {
-
-            for (int j = i + 1; j < products.size(); j++) {
-
-                if (totalSold(products.get(j)) > totalSold(products.get(i))) {
-
-                    Product temp = products.get(i);
-                    products.set(i, products.get(j));
-                    products.set(j, temp);
-
-                }
-
-            }
-
-        }
-
-        // print 
-        System.out.printf("%-10s %-25s %-15s\n",
+        System.out.println("==============================================================");
+        System.out.printf("%-10s %-30s %-15s\n",
                 "Product ID", "Product Name", "Quantity Sold");
+        System.out.println("==============================================================");
 
-        int limit = Math.min(5, products.size());
+        int limit = Math.min(5, productIds.size());
 
         for (int i = 0; i < limit; i++) {
 
-            Product p = products.get(i);
+            System.out.printf("%-10s %-30s %-15d\n",
+                    productIds.get(i),
+                    productNames.get(i),
+                    quantitySold.get(i));
 
-            System.out.printf("%-10s %-25s %-15d\n",
-                    p.getId(),
-                    p.getName(),
-                    totalSold(p));
         }
+
+        System.out.println("==============================================================");
+
     }
 
-    // menu
+
     public void menuReport() {
 
         int choice;
 
         do {
 
-            System.out.println("===== REPORT =====");
+            System.out.println("\n============= REPORT =============");
             System.out.println("1. Revenue of last month");
-            System.out.println("2. Bills by Customer");
+            System.out.println("2. Bills by Customer ID");
             System.out.println("3. Customer Ranking");
-            System.out.println("4. Top 5 Products");
+            System.out.println("4. Top 5 Best Selling Products");
             System.out.println("0. Exit");
+            System.out.print("Choose: ");
 
-            choice = Integer.parseInt(sc.nextLine());
+            try {
+
+                choice = Integer.parseInt(sc.nextLine());
+
+            } catch (Exception e) {
+
+                System.out.println("Invalid input!");
+                choice = -1;
+
+            }
 
             switch (choice) {
 
@@ -275,11 +309,18 @@ public class Report {
                     top5Product();
                     break;
 
-                default:
+                case 0:
+                    System.out.println("Exit Report...");
                     break;
+
+                default:
+                    System.out.println("Invalid choice!");
+
             }
 
         } while (choice != 0);
 
     }
+
 }
+

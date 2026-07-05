@@ -6,13 +6,14 @@ import entity.ProductList;
 import entity.Report;
 import entity.SalesTransaction;
 import java.util.Scanner;
+
 public class SystemInterface {
 
     public static void main(String[] args) {
         Customerlist customerlist = new Customerlist();
         ProductList productList = new ProductList();
         Inventory inventory = new Inventory();
-        SalesTransaction salesTransaction = new  SalesTransaction(customerlist, inventory);
+        SalesTransaction salesTransaction = new SalesTransaction(customerlist, inventory);
 
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
@@ -49,31 +50,26 @@ public class SystemInterface {
                             salesTransaction.createSale();
                             break;
                         case 4:
-                            // System.out.println("Reports");
-                            // Report report = new Report("Monthly Report", new Date());
-                            // report.salesReport(SalesTransaction.getTransactions());
-                            // report.bestSellingProducts(SalesTransaction.getTransactions());
-                            // report.highestPurchaseCustomer(SalesTransaction.getTransactions());
-                            Report report = new Report("Monthly Report", new java.util.Date());
+                            System.out.println("Reports");
+
+                            Report report = new Report(customerlist, inventory);
                             report.menuReport();
                             break;
                         case 5:
                             System.out.println("Inventory");
                             inventory.inventoryMenu();
                             break;
-                            // System.out.print("Enter Product ID: ");
-                            // String id = sc.nextLine();
+                        // System.out.print("Enter Product ID: ");
+                        // String id = sc.nextLine();
 
-                            // Inventory inventory = productList.findInventoryById(id);
-                            // if (inventory == null) {
-                            // System.out.println( "Product not found!");
+                        // Inventory inventory = productList.findInventoryById(id);
+                        // if (inventory == null) {
+                        // System.out.println( "Product not found!");
 
-                            // } else {
-                            // inventory.inventoryMenu();
+                        // } else {
+                        // inventory.inventoryMenu();
 
-                            // }
-
-                           
+                        // }
 
                         case 6:
                             System.out.println("Exit Program");
