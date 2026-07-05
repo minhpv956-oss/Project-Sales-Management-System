@@ -9,19 +9,16 @@ import java.util.Scanner;
 public class SystemInterface {
 
     public static void main(String[] args) {
-        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss
-        // dd/MM/yyyy");
-        // Customerlist customerlist = new Customerlist();
         Customerlist customerlist = new Customerlist();
         ProductList productList = new ProductList();
         Inventory inventory = new Inventory();
         SalesTransaction salesTransaction = new  SalesTransaction(customerlist, inventory);
+
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
                 try {
                     System.out.println("========================");
                     System.out.println("SALES MANAGEMENT SYSTEM");
-                    // System.out.println("Current Time: " + LocalDateTime.now().format(formatter));
                     System.out.println("========================");
                     System.out.println("1. Manage Products");
                     System.out.println("2. Manage Customers");
