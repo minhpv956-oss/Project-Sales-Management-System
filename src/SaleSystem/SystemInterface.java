@@ -1,10 +1,11 @@
 package SaleSystem;
 
 import entity.Customerlist;
-import entity.ProductList;
 import entity.Inventory;
-import java.util.Scanner;
+import entity.ProductList;
 import entity.Report;
+import entity.SalesTransaction;
+import java.util.Scanner;
 public class SystemInterface {
 
     public static void main(String[] args) {
@@ -14,6 +15,7 @@ public class SystemInterface {
         Customerlist customerlist = new Customerlist();
         ProductList productList = new ProductList();
         Inventory inventory = new Inventory();
+        SalesTransaction salesTransaction = new  SalesTransaction(customerlist, inventory);
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
                 try {
@@ -46,10 +48,8 @@ public class SystemInterface {
                             customerlist.chooseService();
                             break;
                         case 3:
-                            // System.out.println("Manage Sales Transactions");
-                            // SalesTransaction salesTransaction = new SalesTransaction(customerlist,
-                            // productList);
-                            // salesTransaction.showTransaction();
+                            System.out.println("Manage Sales Transactions");
+                            salesTransaction.createSale();
                             break;
                         case 4:
                             // System.out.println("Reports");

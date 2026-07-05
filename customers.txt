@@ -1,5 +1,5 @@
-KH01,hung,reshgrt,34647,VIP,52000.0,Diamond,0.15
-KH02,Trần Thị Bình,45 Nguyễn Huệ HCM,0912345678,VIP,12000.0,Silver,0.05
+KH01,hung,reshgrt,34647,VIP,96000.0,Gold,0.1
+KH02,Trần Thị Bình,45 Nguyễn Huệ HCM,0912345678,VIP,188000.0,Diamond,0.15
 KH03,Lê Hoàng Nam,78 Hai Bà Trưng HN,0923456789,VIP,35000.0,Gold,0.1
 KH04,Phạm Thị Cúc,12 Trần Hưng �?ạo HCM,0934567890,Normal,0,None,0.00
 KH05,Hoàng Minh Tuấn,99 �?inh Tiên Hoàng HN,0945678901,Normal,0,None,0.00

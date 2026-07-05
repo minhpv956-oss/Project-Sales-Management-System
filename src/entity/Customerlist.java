@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Customerlist extends Customer{
+public class Customerlist extends Customer {
 
     private ArrayList<Customer> customers;
-    public void setCustomers(ArrayList<Customer> customers) {
-        this.customers = customers;
-    }
 
     private Scanner sc = new Scanner(System.in);
 
     private static final String FILE_NAME = "customers.txt";
+
+    public void setCustomers(ArrayList<Customer> customers) {
+        this.customers = customers;
+    }
 
     private Customer parseCustomerLine(String line) {
         String[] p = line.split(",");
@@ -60,6 +61,15 @@ public class Customerlist extends Customer{
         FileHelper.writeLines(FILE_NAME, lines);
     }
 
+    public Customer findById(String id) {
+        for (Customer c : customers) {
+            if (c.getId().equalsIgnoreCase(id)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
     public void addCustomer() {
         System.out.println("Enter the number of customers you want to add: ");
         int n = sc.nextInt();
@@ -76,7 +86,7 @@ public class Customerlist extends Customer{
             String customerphone = sc.nextLine();
             Customer newCustomer = new Customer(customerid, customername, customeraddress, customerphone);
             customers.add(newCustomer);
-            saveToFile(); 
+            saveToFile();
             System.out.println("Customer added successfully!");
         }
     }
@@ -97,12 +107,12 @@ public class Customerlist extends Customer{
                 customer.setAddress(newaddress);
                 customer.setPhone(newphone);
                 found = 1;
-                 saveToFile(); 
+                saveToFile();
                 break;
             }
         }
         if (found == 1) {
-           
+
             System.out.println("Customer with ID " + newid + " updated successfully!");
         } else {
             System.out.println("Customer with ID " + newid + " not found!");
@@ -117,30 +127,28 @@ public class Customerlist extends Customer{
             if (removeId.equalsIgnoreCase(customer.getId())) {
                 customers.removeIf(c -> c.getId().equalsIgnoreCase(removeId));
                 found = 1;
-                 saveToFile(); 
+                saveToFile();
                 break;
             }
         }
         if (found == 1) {
-           
+
             System.out.println("Customer with ID " + removeId + " removed successfully!");
         } else {
             System.out.println("Customer with ID " + removeId + " not found!");
         }
     }
 
-    public void viewAllCustomers() {
-        if (customers.isEmpty()) {
-            System.out.println("No customers found.");
-        } else {
-            System.out.println("==========Customer List==========");
-            for (Customer customer : customers) {
-                System.out.println("ID: " + customer.getId());
-                System.out.println("Name: " + customer.getName());
-                System.out.println("Address: " + customer.getAddress());
-                System.out.println("Phone: " + customer.getPhone());
-                System.out.println("------------------------");
-            }
+    @Override
+    public void showCustomerInfo() {
+        System.out.println("=========== Customers Info ==========");
+        for (Customer customer : customers) {
+            System.out.println("Customer ID: " + customer.getId());
+            System.out.println("Name: " + customer.getName());
+            System.out.println("Address: " + customer.getAddress());
+            System.out.println("Phone: " + customer.getPhone());
+            System.out.println("Tier: " + customer.getTier());
+            System.out.println("");
         }
     }
 
@@ -176,7 +184,7 @@ public class Customerlist extends Customer{
                         break;
                     case 4:
                         System.out.println("View all customers.");
-                        viewAllCustomers();
+                        showCustomerInfo();
                         break;
                     case 5:
                         System.out.println("Exit Program");
