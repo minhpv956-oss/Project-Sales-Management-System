@@ -1,5 +1,5 @@
-
 package entity;
+
 public class Customer {
 
     protected String id;
@@ -10,12 +10,12 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String id,String name,String address,String phone){
+    public Customer(String id, String name, String address, String phone) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.phone = phone;
-    
+
     }
 
     public String getId() {
@@ -49,16 +49,29 @@ public class Customer {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public void showCustomerInfo(){
+
+    public String getTier() {
+        return "Normal";
+    }
+
+    public double getDiscountRate() {
+        return 0.0;
+    }
+
+    public void addPurchase(double amount) {
+    }
+
+    public void showCustomerInfo() {
         System.out.println("Customer ID: " + id);
         System.out.println("Name: " + name);
         System.out.println("Address: " + address);
         System.out.println("Phone: " + phone);
+        System.out.println("Tier: " + getTier());
+        System.out.println("Discount: " + (getDiscountRate() * 100) + "%");
     }
-public String toFileString() {
-    // Định dạng mong đợi: id, name, address, phone, type, loyaltyPoints, tier, discount
-    // Với Normal, ta có thể ghi các giá trị mặc định cho phần còn lại
-    return id + "," + getName() + "," + getAddress() + "," + getPhone() + ",Normal,0,None,0.00";
-}
+
+    public String toFileString() {
+        return id + "," + getName() + "," + getAddress() + "," + getPhone() + ",Normal,0,None,0.00";
+    }
 
 }
