@@ -13,7 +13,7 @@ public class SystemInterface {
         // Customerlist customerlist = new Customerlist();
         Customerlist customerlist = new Customerlist();
         ProductList productList = new ProductList();
-
+        Inventory inventory = new Inventory();
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
                 try {
@@ -61,6 +61,9 @@ public class SystemInterface {
                             report.menuReport();
                             break;
                         case 5:
+                            System.out.println("Inventory");
+                            inventory.inventoryMenu();
+                            break;
                             // System.out.print("Enter Product ID: ");
                             // String id = sc.nextLine();
 

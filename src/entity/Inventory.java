@@ -1,132 +1,290 @@
 package entity;
 
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-public class Inventory extends Product {
-    
+
+public class Inventory {
+
+    private ArrayList<Product> stockList = new ArrayList<>();
     private Scanner sc = new Scanner(System.in);
-    
 
-    public Inventory(String name, String id, double price, int stockQuantity, String category, String unit,
-            String imageUrl, Date createdAt) {
+    private final String FILE_PATH = "product.txt"; // dung chung 1 file voi ProductList
 
-        super(name, id, price, stockQuantity,
-              category, unit, imageUrl, createdAt);
+    // ================= LOAD =================
+    public void loadData() {
+
+        stockList.clear();
+
+        List<String> lines = FileHelper.readLines(FILE_PATH); 
+
+        for (String line : lines) {
+
+            String[] parts = line.split(",");
+
+            if (parts.length == 5) {
+
+                Product p = new Product(
+                        parts[0],
+                        parts[1],
+                        Double.parseDouble(parts[2]),
+                        parts[3],
+                        Integer.parseInt(parts[4])
+                );
+
+                stockList.add(p);
             }
-
-
-    public boolean checkStock(int quantity) {
-        return quantity > 0 && stockQuantity >= quantity;
+        }
     }
 
-    public boolean reduceStock(int quantity) {
+    // ================= SAVE =================
+    public void saveData() {
 
-        if (quantity <= 0) {
+        List<String> lines = new ArrayList<>();
+
+        for (Product p : stockList) {
+
+            lines.add(
+                    p.getId() + "," +
+                    p.getName() + "," +
+                    p.getPrice() + "," +
+                    p.getCategory() + "," +
+                    p.getQuantity()          
+            );
+        }
+
+        FileHelper.writeLines(FILE_PATH, lines);
+    }
+
+    // ================= FIND =================
+    public Product findById(String id) {
+
+        for (Product p : stockList) {
+            if (p.getId().equalsIgnoreCase(id)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    // ================= ADD PRODUCT =================
+    public void addProduct(Product p) {
+
+        stockList.add(p);
+        saveData();
+        System.out.println("Add success");
+    }
+
+    // ================= REMOVE =================
+    public void removeProduct(String id) {
+
+        Product p = findById(id);
+
+        if (p != null) {
+            stockList.remove(p);
+            saveData();
+            System.out.println("Remove success");
+        } else {
+            System.out.println("Not found");
+        }
+    }
+
+    // ================= UPDATE =================
+    public void updateProduct(String id, String name, double price, int quantity) {
+
+        Product p = findById(id);
+
+        if (p != null) {
+
+            p.setName(name);
+            p.setPrice(price);
+            p.setQuantity(quantity);          // sua: setStock -> setQuantity
+
+            saveData();
+            System.out.println("Update success");
+        } else {
+            System.out.println("Not found");
+        }
+    }
+
+    // ================= STOCK =================
+    public int checkStock(String id) {
+
+        Product p = findById(id);
+
+        if (p != null) return p.getQuantity(); // 
+
+        return -1;
+    }
+
+    // ================= ADD STOCK =================
+    public void addStock(String id, int qty) {
+
+        Product p = findById(id);
+
+        if (p != null) {
+
+            p.setQuantity(p.getQuantity() + qty); // 
+            saveData();
+
+            System.out.println("Stock added");
+        } else {
+            System.out.println("Not found");
+        }
+    }
+
+    // ================= REDUCE STOCK =================
+    public boolean reduceStock(String id, int qty) {
+
+        Product p = findById(id);
+
+        if (p == null) {
+            System.out.println("Not found");
             return false;
         }
 
-        if (stockQuantity >= quantity) {
-            stockQuantity -= quantity;
-            return true;
+        if (p.getQuantity() < qty) {          
+            System.out.println("Not enough stock");
+            return false;
         }
 
-        return false;
+        p.setQuantity(p.getQuantity() - qty); // 
+        saveData();
+
+        return true;
     }
 
-    public void addStock(int quantity) {
+    // ================= DISPLAY ALL =================
+    public void displayAll() {
 
-        if (quantity > 0) {
-            stockQuantity += quantity;
+        System.out.println("===== INVENTORY =====");
+
+        for (Product p : stockList) {
+            System.out.println(p);
         }
     }
 
-    public void updateStock(int newStock) {
+    // ================= DISPLAY CATEGORY =================
+    public void displayByCategory(String category) {
 
-        if (newStock >= 0) {
-            stockQuantity = newStock;
+        for (Product p : stockList) {
+
+            if (p.getCategory().equalsIgnoreCase(category)) {
+                System.out.println(p);
+            }
         }
     }
-    public void inventoryMenu(){
+
+    // ================= MENU =================
+    public void inventoryMenu() {
+
+        loadData();
+
         while (true) {
 
             System.out.println("\n===== INVENTORY MENU =====");
-            System.out.println("Managing Product: " + name);
-            System.out.println("Current Stock: " + stockQuantity);
-
-            System.out.println("1. Check Stock");
-            System.out.println("2. Reduce Stock");
-            System.out.println("3. Add Stock");
-            System.out.println("4. Update Stock");
+            System.out.println("1. Add product");
+            System.out.println("2. Remove product");
+            System.out.println("3. Update product");
+            System.out.println("4. Check stock");
+            System.out.println("5. Add stock");
+            System.out.println("6. Reduce stock");
+            System.out.println("7. Display all");
+            System.out.println("8. Display by category");
             System.out.println("0. Back");
 
+            System.out.print("Choose: ");
             int choice = Integer.parseInt(sc.nextLine());
 
             switch (choice) {
 
                 case 1:
+                    System.out.print("ID: ");
+                    String id = sc.nextLine();
 
-                    System.out.print("Enter quantity: ");
-                    int qtyCheck =
-                            Integer.parseInt(sc.nextLine());
+                    System.out.print("Name: ");
+                    String name = sc.nextLine();
 
-                    if (checkStock(qtyCheck)) {
-                        System.out.println("Enough stock.");
-                    } else {
-                        System.out.println("Not enough stock.");
-                    }
+                    System.out.print("Price: ");
+                    double price = Double.parseDouble(sc.nextLine());
 
+                    System.out.print("Category: ");
+                    String category = sc.nextLine();
+
+                    System.out.print("Stock: ");
+                    int stock = Integer.parseInt(sc.nextLine());
+
+                    addProduct(new Product(id, name, price, category, stock));
                     break;
 
                 case 2:
-
-                    System.out.print("Quantity to sell: ");
-                    int qtySell =
-                            Integer.parseInt(sc.nextLine());
-
-                    if (reduceStock(qtySell)) {
-                        System.out.println("Sale successful.");
-                    } else {
-                        System.out.println("Sale failed.");
-                    }
-
+                    System.out.print("ID: ");
+                    removeProduct(sc.nextLine());
                     break;
 
                 case 3:
+                    System.out.print("ID: ");
+                    String uid = sc.nextLine();
 
-                    System.out.print("Quantity to add: ");
-                    int qtyAdd =
-                            Integer.parseInt(sc.nextLine());
+                    System.out.print("Name: ");
+                    String n = sc.nextLine();
 
-                    addStock(qtyAdd);
+                    System.out.print("Price: ");
+                    double pr = Double.parseDouble(sc.nextLine());
 
-                    System.out.println("Stock added.");
+                    System.out.print("Stock: ");
+                    int st = Integer.parseInt(sc.nextLine());
+
+                    updateProduct(uid, n, pr, st);
                     break;
 
                 case 4:
+                    System.out.print("ID: ");
+                    String cid = sc.nextLine();
 
-                    System.out.print("New stock quantity: ");
+                    int result = checkStock(cid);
 
-                    int newStock =
-                            Integer.parseInt(sc.nextLine());
+                    if (result == -1)
+                        System.out.println("Not found");
+                    else
+                        System.out.println("Stock: " + result);
+                    break;
 
-                    updateStock(newStock);
+                case 5:
+                    System.out.print("ID: ");
+                    String aid = sc.nextLine();
 
-                    System.out.println("Stock updated.");
+                    System.out.print("Qty: ");
+                    int aq = Integer.parseInt(sc.nextLine());
+
+                    addStock(aid, aq);
+                    break;
+
+                case 6:
+                    System.out.print("ID: ");
+                    String rid = sc.nextLine();
+
+                    System.out.print("Qty: ");
+                    int rq = Integer.parseInt(sc.nextLine());
+
+                    reduceStock(rid, rq);
+                    break;
+
+                case 7:
+                    displayAll();
+                    break;
+
+                case 8:
+                    System.out.print("Category: ");
+                    displayByCategory(sc.nextLine());
                     break;
 
                 case 0:
                     return;
 
                 default:
-                    System.out.println("Invalid choice.");
+                    System.out.println("Invalid");
             }
         }
-    
-
-    }
-
-    @Override
-    public String toString() {
-        return String.format("ID: " + id + ", Name: " + name + ", Stock: " + stockQuantity);
     }
 }
