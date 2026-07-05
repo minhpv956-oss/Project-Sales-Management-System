@@ -2,7 +2,7 @@ package SaleSystem;
 
 import entity.Customerlist;
 import entity.ProductList;
-
+import entity.Inventory;
 import java.util.Scanner;
 import entity.Report;
 public class SystemInterface {
@@ -76,7 +76,7 @@ public class SystemInterface {
 
                             // }
 
-                            break;
+                           
 
                         case 6:
                             System.out.println("Exit Program");

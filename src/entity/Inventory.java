@@ -98,7 +98,7 @@ public class Inventory {
 
             p.setName(name);
             p.setPrice(price);
-            p.setQuantity(quantity);          // sua: setStock -> setQuantity
+            p.setQuantity(quantity);          
 
             saveData();
             System.out.println("Update success");
