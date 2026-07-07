@@ -59,17 +59,6 @@ public class SystemInterface {
                             System.out.println("Inventory");
                             inventory.inventoryMenu();
                             break;
-                        // System.out.print("Enter Product ID: ");
-                        // String id = sc.nextLine();
-
-                        // Inventory inventory = productList.findInventoryById(id);
-                        // if (inventory == null) {
-                        // System.out.println( "Product not found!");
-
-                        // } else {
-                        // inventory.inventoryMenu();
-
-                        // }
 
                         case 6:
                             System.out.println("Exit Program");

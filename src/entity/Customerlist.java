@@ -30,7 +30,7 @@ public class Customerlist extends Customer {
         if (type.equalsIgnoreCase("VIP")) {
             String tier = p[6];                          // Diamond/Gold/Silver
             double discountRate = Double.parseDouble(p[7]);
-            double loyaltyPoints = Double.parseDouble(p[5]); 
+            double loyaltyPoints = Double.parseDouble(p[5]);
             return new VIPCustomer(id, name, address, phone, tier, discountRate, loyaltyPoints);
         } else {
             return new Customer(id, name, address, phone);
@@ -39,7 +39,7 @@ public class Customerlist extends Customer {
 
     public Customerlist() {
         this.customers = new ArrayList<>();
-        loadFromFile(); // tự nạp dữ liệu cũ khi khởi tạo
+        loadFromFile();
     }
 
     public void loadFromFile() {
@@ -67,14 +67,40 @@ public class Customerlist extends Customer {
         return null;
     }
 
+    public String checkID() {
+        String customerid = "";
+        boolean check = false;
+        while (check != true) {
+            System.out.print("Enter customer ID: ");
+            String newcustomerid = sc.nextLine();
+            boolean exist = false;
+            for (int j = 0; j < customers.size(); j++) {
+                if (newcustomerid.equalsIgnoreCase(customers.get(j).getId())) {
+                    exist = true;
+                    break;
+                }
+            }
+            if (exist == true) {
+                System.out.println("The ID already exists, please re-enter the ID.");
+               
+            } else {
+                check = true;
+                customerid = newcustomerid;
+                System.out.println("Valid ID.");
+                
+            }
+        }
+        return customerid;
+    }
+
     public void addCustomer() {
         System.out.println("Enter the number of customers you want to add: ");
         int n = sc.nextInt();
         sc.nextLine();
+
         for (int i = 0; i < n; i++) {
             System.out.println("Enter details for customer " + (i + 1) + ":");
-            System.out.print("Enter customer ID: ");
-            String customerid = sc.nextLine();
+            String customerid = checkID();
             System.out.print("Enter customer name: ");
             String customername = sc.nextLine();
             System.out.print("Enter customer address: ");
