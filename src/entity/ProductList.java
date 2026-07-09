@@ -74,7 +74,7 @@ public class ProductList {
     }
 
     public void update() {
-        System.out.print("Please enter name of Product to update: ");
+        System.out.print("Please enter ID of Product to update: ");
         String input = sc.nextLine();
         boolean found = false;
 
