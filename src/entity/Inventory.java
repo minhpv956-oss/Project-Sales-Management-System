@@ -9,7 +9,7 @@ public class Inventory {
     private ArrayList<Product> stockList = new ArrayList<>();
     private Scanner sc = new Scanner(System.in);
 
-    private final String FILE_PATH = "product.txt"; // dung chung 1 file voi ProductList
+    private final String FILE_PATH = "product.txt"; 
 
     // ================= LOAD =================
     public void loadData() {

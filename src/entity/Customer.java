@@ -3,9 +3,9 @@ package entity;
 public class Customer {
 
     protected String id;
-    private String name;
-    private String address;
-    private String phone;
+    protected  String name;
+    protected  String address;
+    protected  String phone;
 
     public Customer() {
     }
@@ -57,6 +57,9 @@ public class Customer {
     public double getDiscountRate() {
         return 0.0;
     }
+    public double getLoyaltyPoints(){
+        return 0.0;
+    }
 
     public void addPurchase(double amount) {
     }
@@ -68,6 +71,7 @@ public class Customer {
         System.out.println("Phone: " + phone);
         System.out.println("Tier: " + getTier());
         System.out.println("Discount: " + (getDiscountRate() * 100) + "%");
+        System.out.println("Loyalty Point: " + getLoyaltyPoints());
     }
 
     public String toFileString() {

@@ -27,3 +27,7 @@ HD017,cn04,Chuột không dây Logitech,4,450000.0,1800000.0
 HD018,cn04,Chuột không dây Logitech,1,450000.0,450000.0
 HD019,cn02,�?iện thoại Samsung S24,1,2.2E7,2.2E7
 HD020,cn04,Chuột không dây Logitech,1,450000.0,450000.0
+HD021,tp01,Mì gói Hảo Hảo (thùng),2,120000.0,240000.0
+HD021,tp03,Nước mắm Chin-su,1,45000.0,45000.0
+HD022,cn01,con ga,1,120.0,120.0
+HD023,o03,Băng keo đóng thùng,1,25000.0,25000.0

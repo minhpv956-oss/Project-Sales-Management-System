@@ -25,8 +25,10 @@ public class SalesTransaction {
     private void loadData() {
         transactions.clear();
         saleItemDetails.clear();
-        for (String line : FileHelper.readLines(SALES_FILE)) transactions.add(Sale.fromFileString(line));
-        for (String line : FileHelper.readLines(ITEMS_FILE)) saleItemDetails.add(SaleItem.fromFileString(line));
+        for (String line : FileHelper.readLines(SALES_FILE)) 
+            transactions.add(Sale.fromFileString(line));
+        for (String line : FileHelper.readLines(ITEMS_FILE)) 
+            saleItemDetails.add(SaleItem.fromFileString(line));
     }
 
     public static ArrayList<Sale> getTransactions() {
@@ -53,7 +55,8 @@ public class SalesTransaction {
     while (true) {
         System.out.print("Input Products Id to buy (input 'finish' if done): ");
         String productId = sc.nextLine().trim();
-        if (productId.equalsIgnoreCase("finish")) break;
+        if (productId.equalsIgnoreCase("finish")) 
+        break;
 
         Product product = inventory.findById(productId);
         if (product == null) {

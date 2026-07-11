@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Customerlist extends Customer {
 
     private ArrayList<Customer> customers;
-
     private Scanner sc = new Scanner(System.in);
 
     private static final String FILE_NAME = "customers.txt";
@@ -18,17 +17,14 @@ public class Customerlist extends Customer {
 
     private Customer parseCustomerLine(String line) {
         String[] p = line.split(",");
-        // p[0]=id, p[1]=name, p[2]=address, p[3]=phone,
-        // p[4]=type (VIP/Normal), p[5]=totalSpent, p[6]=tier, p[7]=discount
-
-        String id = p[0];
-        String name = p[1];
-        String address = p[2];
-        String phone = p[3];
+        id = p[0];
+        name = p[1];
+        address = p[2];
+        phone = p[3];
         String type = p[4];
 
         if (type.equalsIgnoreCase("VIP")) {
-            String tier = p[6];                          // Diamond/Gold/Silver
+            String tier = p[6];                                 // Diamond/Gold/Silver
             double discountRate = Double.parseDouble(p[7]);
             double loyaltyPoints = Double.parseDouble(p[5]);
             return new VIPCustomer(id, name, address, phone, tier, discountRate, loyaltyPoints);
@@ -58,7 +54,7 @@ public class Customerlist extends Customer {
         FileHelper.writeLines(FILE_NAME, lines);
     }
 
-    public Customer findById(String id) {
+    public Customer findById(String id) {    //for Sale use
         for (Customer c : customers) {
             if (c.getId().equalsIgnoreCase(id)) {
                 return c;
@@ -82,12 +78,12 @@ public class Customerlist extends Customer {
             }
             if (exist == true) {
                 System.out.println("The ID already exists, please re-enter the ID.");
-               
+
             } else {
                 check = true;
                 customerid = newcustomerid;
                 System.out.println("Valid ID.");
-                
+
             }
         }
         return customerid;
@@ -171,8 +167,35 @@ public class Customerlist extends Customer {
             System.out.println("Address: " + customer.getAddress());
             System.out.println("Phone: " + customer.getPhone());
             System.out.println("Tier: " + customer.getTier());
+            System.out.println("Discount Rate: " + customer.getDiscountRate());
+            System.out.println("Loyalty Points: " + customer.getLoyaltyPoints());
             System.out.println("");
         }
+    }
+
+    public void showEachCustomerInfo() {
+        System.out.println("Enter customer ID to show: ");
+        String newCusomerId = sc.nextLine();
+        int found=0;
+        for (int i = 0; i < customers.size(); i++) {
+            if (customers.get(i).getId().equalsIgnoreCase(newCusomerId)) {
+                System.out.println("=========== Customers Info ==========");
+                System.out.println("Customer ID: " + customers.get(i).getId());
+                System.out.println("Name: " + customers.get(i).getName());
+                System.out.println("Address: " + customers.get(i).getAddress());
+                System.out.println("Phone: " + customers.get(i).getPhone());
+                System.out.println("Tier: " + customers.get(i).getTier());
+                System.out.println("Discount Rate: " + customers.get(i).getDiscountRate());
+                System.out.println("Loyalty Points: " + customers.get(i).getLoyaltyPoints());
+                System.out.println("");
+                found=1;
+                break;
+
+            }
+        }if(found==0){
+                System.out.println("Customer ID: "+newCusomerId+"not exists.");
+            }
+
     }
 
     public void chooseService() {
@@ -185,7 +208,8 @@ public class Customerlist extends Customer {
                 System.out.println("2. Update customer information.");
                 System.out.println("3. Remove a customer.");
                 System.out.println("4. View all customers.");
-                System.out.println("5. Exit");
+                System.out.println("5. View Customer by ID.");
+                System.out.println("6. Exit");
                 System.out.println("----------------------------");
 
                 System.out.print("Choose an option: ");
@@ -210,7 +234,11 @@ public class Customerlist extends Customer {
                         showCustomerInfo();
                         break;
                     case 5:
-                        System.out.println("Exit Program");
+                        System.out.println("View Customer by ID.");
+                        showEachCustomerInfo();
+                        break;
+                    case 6: 
+                       System.out.println("Exit Program");
                         return;
                     default:
                         System.out.println("Invalid option");
