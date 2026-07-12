@@ -23,12 +23,14 @@ public class SalesTransaction {
     }
 
     private void loadData() {
-        transactions.clear();
-        saleItemDetails.clear();
-        for (String line : FileHelper.readLines(SALES_FILE)) 
-            transactions.add(Sale.fromFileString(line));
-        for (String line : FileHelper.readLines(ITEMS_FILE)) 
-            saleItemDetails.add(SaleItem.fromFileString(line));
+   transactions.clear();
+   saleItemDetails.clear();
+   for (String line : FileHelper.readLines(SALES_FILE)) {
+       transactions.add(Sale.fromFileString(line));
+   }
+   for (String line : FileHelper.readLines(ITEMS_FILE)) {
+       saleItemDetails.add(SaleItem.fromFileString(line));
+   }
     }
 
     public static ArrayList<Sale> getTransactions() {
@@ -47,7 +49,7 @@ public class SalesTransaction {
     if (customer == null) {
         System.out.println("Can not find Customer by Id" + customerId);
         return;
-    }
+    } //check cusID
 
     List<SaleItem> itemsInThisSale = new ArrayList<>();
     double subtotalSum = 0;
