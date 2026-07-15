@@ -74,7 +74,7 @@ public class SalesTransaction {
             int quantity = Integer.parseInt(sc.nextLine().trim());
 
             double unitPrice = product.getPrice();
-            boolean success = inventory.reduceStock(productId, quantity);
+            boolean success =  inventory.reduceStock(productId, quantity);
             if (!success) {
                 continue;
             }

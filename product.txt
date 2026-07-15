@@ -1,15 +1,15 @@
-CN01,Chicken,120.0,Animal,20
-CN02,Samsung S24 Phone,2.2E7,Technology,4
-CN03,Sony WH-1000 Headphones,3500000.0,Technology,17
-CN04,Logitech Wireless Mouse,450000.0,Technology,24
-GD01,Sunhouse Rice Cooker,850000.0,Household,12
-GD02,Philips Blender,1200000.0,Household,5
-GD03,Panasonic Electric Fan,650000.0,Household,18
-GD04,Steam Iron,420000.0,Household,25
-TP01,Hao Hao Instant Noodles (box),120000.0,Food,46
-TP02,Neptune Cooking Oil 5L,180000.0,Food,38
-TP03,Chin-su Fish Sauce,45000.0,Food,59
-TP04,Vinamilk Fresh Milk (pack of 4),85000.0,Food,35
-O01,Thien Long Ballpoint Pens (box),35000.0,Other,99
-O02,96-page Notebook,18000.0,Other,80
-O03,Packing Tape,25000.0,Other,24
+CN01 , Chicken , 120.0 , Animal , 20
+CN02 , Samsung S24 Phone , 2.2E7 , Technology , 4
+CN03 , Sony WH-1000 Headphones , 3500000.0 , Technology , 17
+CN04 , Logitech Wireless Mouse , 450000.0 , Technology , 24
+GD01 , Sunhouse Rice Cooker , 850000.0 , Household , 12
+GD02 , Philips Blender , 1200000.0 , Household , 5
+GD03 , Panasonic Electric Fan , 650000.0 , Household , 18
+GD04 , Steam Iron , 420000.0 , Household , 25
+TP01 , Hao Hao Instant Noodles (box) , 120000.0 , Food , 46
+TP02 , Neptune Cooking Oil 5L , 180000.0 , Food , 38
+TP03 , Chin-su Fish Sauce , 45000.0 , Food , 59
+TP04 , Vinamilk Fresh Milk (pack of 4) , 85000.0 , Food , 35
+O01 , Thien Long Ballpoint Pens (box) , 35000.0 , Other , 99
+O02 , 96-page Notebook , 18000.0 , Other , 80
+O03 , Packing Tape , 25000.0 , Other , 24
