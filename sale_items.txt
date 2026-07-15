@@ -1,33 +1,34 @@
 HD001,CN01,Laptop Dell Inspiron,2,1.5E7,3.0E7
-HD001,CN03,Tai nghe Sony WH-1000,1,3500000.0,3500000.0
-HD001,GD01,Nồi cơm điện Sunhouse,1,850000.0,850000.0
-HD001,TP02,Dầu ăn Neptune 5L,1,180000.0,180000.0
-HD001,O01,Bút bi Thiên Long,1,35000.0,35000.0
-HD002,CN02,�?iện thoại Samsung S24,1,2.2E7,2.2E7
-HD002,GD02,Máy xay sinh tố Philips,1,1200000.0,1200000.0
-HD003,TP01,Mì gói Hảo Hảo,1,120000.0,120000.0
-HD003,TP03,Nước mắm Chin-su,2,45000.0,90000.0
-HD003,O02,Vở ô ly 96 trang,3,18000.0,54000.0
-HD004,CN02,�?iện thoại Samsung S24,1,2.2E7,2.2E7
-HD004,GD03,Quạt điện Panasonic,1,650000.0,650000.0
-HD004,TP04,Sữa tươi Vinamilk,2,85000.0,170000.0
-HD005,CN03,Tai nghe Sony WH-1000,1,3500000.0,3500000.0
-HD006,GD01,Nồi cơm điện Sunhouse,1,850000.0,850000.0
-HD007,TP01,Mì gói Hảo Hảo,1,120000.0,120000.0
-HD008,CN04,Chuột không dây Logitech,1,450000.0,450000.0
-HD009,Cn02,�?iện thoại Samsung S24,2,2.2E7,4.4E7
-HD010,Cn02,�?iện thoại Samsung S24,3,2.2E7,6.6E7
-HD011,cn02,�?iện thoại Samsung S24,5,2.2E7,1.1E8
-HD012,tp02,Dầu ăn Neptune 5L,2,180000.0,360000.0
-HD013,Tp01,Mì gói Hảo Hảo (thùng),2,120000.0,240000.0
-HD014,o01,Bút bi Thiên Long (hộp),1,35000.0,35000.0
-HD015,gd02,Máy xay sinh tố Philips,2,1200000.0,2400000.0
-HD016,cn03,Tai nghe Sony WH-1000,3,3500000.0,1.05E7
-HD017,cn04,Chuột không dây Logitech,4,450000.0,1800000.0
-HD018,cn04,Chuột không dây Logitech,1,450000.0,450000.0
-HD019,cn02,�?iện thoại Samsung S24,1,2.2E7,2.2E7
-HD020,cn04,Chuột không dây Logitech,1,450000.0,450000.0
-HD021,tp01,Mì gói Hảo Hảo (thùng),2,120000.0,240000.0
-HD021,tp03,Nước mắm Chin-su,1,45000.0,45000.0
-HD022,cn01,con ga,1,120.0,120.0
-HD023,o03,Băng keo đóng thùng,1,25000.0,25000.0
+HD001,CN03,Sony WH-1000 Headphones,1,3500000.0,3500000.0
+HD001,GD01,Sunhouse Rice Cooker,1,850000.0,850000.0
+HD001,TP02,Neptune Cooking Oil 5L,1,180000.0,180000.0
+HD001,O01,Thien Long Ballpoint Pens,1,35000.0,35000.0
+HD002,CN02,Samsung S24 Phone,1,2.2E7,2.2E7
+HD002,GD02,Philips Blender,1,1200000.0,1200000.0
+HD003,TP01,Hao Hao Instant Noodles,1,120000.0,120000.0
+HD003,TP03,Chin-su Fish Sauce,2,45000.0,90000.0
+HD003,O02,96-page Notebook,3,18000.0,54000.0
+HD004,CN02,Samsung S24 Phone,1,2.2E7,2.2E7
+HD004,GD03,Panasonic Electric Fan,1,650000.0,650000.0
+HD004,TP04,Vinamilk Fresh Milk,2,85000.0,170000.0
+HD005,CN03,Sony WH-1000 Headphones,1,3500000.0,3500000.0
+HD006,GD01,Sunhouse Rice Cooker,1,850000.0,850000.0
+HD007,TP01,Hao Hao Instant Noodles,1,120000.0,120000.0
+HD008,CN04,Logitech Wireless Mouse,1,450000.0,450000.0
+HD009,CN02,Samsung S24 Phone,2,2.2E7,4.4E7
+HD010,CN02,Samsung S24 Phone,3,2.2E7,6.6E7
+HD011,CN02,Samsung S24 Phone,5,2.2E7,1.1E8
+HD012,TP02,Neptune Cooking Oil 5L,2,180000.0,360000.0
+HD013,TP01,Hao Hao Instant Noodles (box),2,120000.0,240000.0
+HD014,O01,Thien Long Ballpoint Pens (box),1,35000.0,35000.0
+HD015,GD02,Philips Blender,2,1200000.0,2400000.0
+HD016,CN03,Sony WH-1000 Headphones,3,3500000.0,1.05E7
+HD017,CN04,Logitech Wireless Mouse,4,450000.0,1800000.0
+HD018,CN04,Logitech Wireless Mouse,1,450000.0,450000.0
+HD019,CN02,Samsung S24 Phone,1,2.2E7,2.2E7
+HD020,CN04,Logitech Wireless Mouse,1,450000.0,450000.0
+HD021,TP01,Hao Hao Instant Noodles (box),2,120000.0,240000.0
+HD021,TP03,Chin-su Fish Sauce,1,45000.0,45000.0
+HD022,CN01,Chicken,1,120.0,120.0
+HD023,O03,Packing Tape,1,25000.0,25000.0
+HD024,cn01,Chicken,2,120.0,240.0

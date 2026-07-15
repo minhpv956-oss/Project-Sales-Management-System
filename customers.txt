@@ -1,9 +1,9 @@
-KH01,hung,reshgrt,34647,VIP,111150.0,Diamond,0.15
-KH02,Trần Thị Bình,45 Nguyễn Huệ HCM,0912345678,VIP,188450.0,Diamond,0.15
-KH03,Lê Hoàng Nam,78 Hai Bà Trưng HN,0923456789,VIP,57265.0,Gold,0.1
-KH04,Phạm Thị Cúc,12 Trần Hưng �?ạo HCM,0934567890,Normal,0,None,0.00
-KH05,Hoàng Minh Tuấn,99 �?inh Tiên Hoàng HN,0945678901,Normal,0,None,0.00
-kh06,NVB,Sg,0334456,Normal,0,None,0.00
-kh07,nhat,dk,456354,Normal,0,None,0.00
-kh08,quna,dhfhyj,34667,Normal,0,None,0.00
-k10,hung,dgfhf,45687567,Normal,0,None,0.00
+KH01,Hung,reshgrt,34647,VIP,111150.0,Diamond,0.15
+KH02,Tran Thi Binh,45 Nguyen Hue HCM,0912345678,VIP,188450.0,Diamond,0.15
+KH03,Le Hoang Nam,78 Hai Ba Trung HN,0923456789,VIP,57265.24,Gold,0.1
+KH04,Pham Thi Cuc,12 Tran Hung Dao HCM,0934567890,Normal,0,None,0.00
+KH05,Hoang Minh Tuan,99 Dinh Tien Hoang HN,0945678901,Normal,0,None,0.00
+KH06,NVB,Sg,0334456,Normal,0,None,0.00
+KH07,Nhat,dk,456354,Normal,0,None,0.00
+KH08,Quna,dhfhyj,34667,Normal,0,None,0.00
+K10,Hung,dgfhf,45687567,Normal,0,None,0.00
