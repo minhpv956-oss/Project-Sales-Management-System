@@ -67,13 +67,13 @@ public class Product {
     // Ghi đè phương thức toString
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price +
-                ", category=" + category + ", quantity=" + quantity + '}';
+        return "Product{" + "id: " + id + ", name: " + name + ", price: " + price +
+                ", category: " + category + ", quantity: " + quantity + '}';
     }
 
     // Phương thức chuyển đối tượng thành chuỗi CSV (5 cột)
     public String toFileString() {
-        return id + "," + name + "," + price + "," + category + "," + quantity;
+        return id + " , " + name + " , " + price + " , " + category + " , " + quantity;
     }
 
     // Phương thức tĩnh chuyển chuỗi từ file thành đối tượng Product
