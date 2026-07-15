@@ -5,7 +5,7 @@ public class Product {
     private String name;
     private double price;
     private String category;
-    private int quantity; // Đã thêm trường quantity để khớp với dữ liệu của bạn
+    private int quantity;
 
     // Constructor rỗng
     public Product() {
@@ -42,7 +42,10 @@ public class Product {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        if (price > 0) {
+            this.price = price;
+        }
+
     }
 
     public String getCategory() {

@@ -16,8 +16,8 @@ public class ProductList {
     public void loadAll() {
         products.clear();
         List<String> lines = FileHelper.readLines("product.txt");
-        System.out.println("--- DEBUG ---");
-        System.out.println("Số sản phẩm đã tải từ file: " + lines.size());
+
+        System.out.println("the number of product dowload by file: " + lines.size());
 
         for (String line : lines) {
             if (!line.trim().isEmpty()) {
@@ -102,7 +102,7 @@ public class ProductList {
     public void display() {
         System.out.println("=====Product list=====");
         if (products.isEmpty()) {
-            System.out.println("lỗi rỗng");
+            System.out.println("null");
         } else {
             for (Product product : products) {
                 System.out.println(product);
@@ -111,7 +111,7 @@ public class ProductList {
     }
 
     public void menu() {
-        System.out.println("\n1. Add | 2. Remove | 3. Update | 4. Display | 5. Exit");
+        System.out.println("\n1. Add \n2. Remove \n3. Update \n4. Display \n5. Exit");
         System.out.print("Please enter a number: ");
         int choice = Integer.parseInt(sc.nextLine());
 
